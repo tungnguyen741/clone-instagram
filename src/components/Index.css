@@ -1,0 +1,228 @@
+.Index{
+    background-color: #fafafa;
+}
+.container {
+  /* width: 52.5%; */
+  width: 840px;
+  margin: 0 auto;
+}
+.wrapper_content {
+  display: flex;
+  padding-top: 30px;
+}
+.phone_slide {
+  /* width: 71%; */
+  width: 574px;
+  margin: 0 auto;
+  position: relative;
+  height: 617px;
+}
+ 
+.phone_slide img {
+  width: 100%;
+  height: 100%;
+}
+.slide_img img{
+  width: 100%;
+    transition: 1s all;
+    position: absolute;
+  }
+.beside-phone-slide img{
+  transition: 2s all;
+}
+img.hide {
+    opacity: 0;
+    visibility: hidden;
+  }
+img.show {
+  opacity: 1;
+  visibility: visible;
+}
+.img-slide{
+  position: absolute;
+}
+.img1{
+  z-index: 1;
+}
+.img2{
+  z-index: 2;
+}
+.img3{
+  z-index: 3;
+}
+.img4{
+  z-index: 4;
+}
+.img5{
+  z-index: 5;
+}
+.beside-phone-slide {
+  width: 240.1px;
+  position: absolute;
+  top: 98.4px;
+  left: 150.5px;
+  height: 428px;
+}
+/* width: 60%; */
+.wrapper_login {
+  margin-top: 33px;
+  width: 505px;
+  position: relative;
+  margin-left: -14px;
+}
+.login {
+  border: 1px solid #ddd;
+  width: 347px;
+  height: 380px;
+  background-color: #fff;
+}
+
+h1 {
+  text-align: center;
+}
+button.btn-login {
+  display: block;
+  width: 100%;
+}
+input.input_login {
+  height: 35px;
+  margin-bottom: 6px;
+  width: 93%;
+  padding: 0px 8px;
+  border: 1px solid #dbdbdb;
+  border-radius: 2px;
+  background: #fafafa;
+  font-size: 11.5px;
+}
+input.input_login:nth-child(2) {
+  margin-bottom: 15px;
+}
+
+input.input_login:focus{
+  border: 1px solid #a8a8a8;
+  outline: none;
+}
+.content-login {
+  width: 80%;
+  margin: 0 auto;
+}
+.content-login {
+  width: 77%;
+  margin: 0 auto;
+  margin-top: -10px;
+}
+h1 img {
+  width: 75%;
+}
+button.btn-login {
+  display: block;
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: 0px;
+  background: #b2dffc;
+  font-weight: bold;
+  color: #fff;
+}
+button.btn-login:focus{
+  outline: none;
+}
+.line span {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  padding: 0 16px;
+  font-size: 13px;
+  color: #8e8e8e;
+}
+.line-through {
+  border-top: 1px solid #bdbdbd;
+  position: relative;
+  top: 11px;
+  z-index: 0;
+}
+.line {
+  text-align: center;
+  margin-top: 13px;
+}button.btn-login-fb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: 0;
+  color: #385185;
+  background: 0;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 22px;
+}
+.login-fb {
+  text-align: center;
+}
+button.btn-login-fb:focus{
+  outline: none;
+}
+.login-fb img {
+  width: 16px;
+  height: 16px;
+}
+img.logo-fb {
+  margin-right: 10px;
+}
+.forgot-password{
+  text-align: center;
+  margin-top: 10px;
+}
+button.forgot-pass {
+  border: 0;
+  background: 0;
+  font-size: 11px;
+  cursor: pointer;
+  color: #385185 ;
+}
+button.forgot-pass:focus {
+  outline: none;
+}
+
+.have-account {
+  height: 63px;
+  border: 1px solid #ddd;
+  width: 347px;
+  margin-top: 9px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+button.btn-sign-up {
+  border: 0;
+  background: 0;
+  color: #0095f6;
+  font-weight: bold;
+  cursor: pointer;
+}
+button.btn-sign-up:focus{
+  outline: none;
+}
+.app-download {
+  text-align: center;
+  width: 347px;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.img_app {
+  width: 347px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img_app img{
+  width: 100%;
+  height: 100%;
+}
+.img-app-store, .img-ch-play {
+  width: 138px;
+  padding: 0px 4px;
+}
