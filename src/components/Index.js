@@ -100,9 +100,24 @@ export default class Index extends Component{
                               </div>
                             </div>
                     </div>
-                   
                 </div>
             </div> 
+              <div className="footer">
+                <ul >
+                    <li><a href="#">about</a></li>
+                    <li><a href="#">help</a></li>
+                    <li><a href="#">press</a></li>
+                    <li><a href="#">api</a></li>
+                    <li><a href="#">jobs</a></li>
+                    <li><a href="#">privacy</a></li>
+                    <li><a href="#">terms</a></li>
+                    <li><a href="#">locations</a></li>
+                    <li><a href="#">top accounts</a></li>
+                    <li><a href="#">hashtags</a></li>
+                    <li><a href="#">language</a></li>
+                </ul>
+                <span>© 2020 INSTAGRAM FROM FACEBOOK</span>
+              </div>
           </div>
           );
         }

@@ -221,8 +221,37 @@ button.btn-sign-up:focus{
 .img_app img{
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 .img-app-store, .img-ch-play {
   width: 138px;
   padding: 0px 4px;
+}
+.footer {
+  width: 71.2%;
+  margin: 0 auto;
+  margin-top: 79px;
+  padding-bottom: 70px;
+}
+.footer ul {
+  list-style: none;
+  display: inline-block;
+  float: left;
+  margin: 0;
+}
+.footer ul li {
+  display: inline-block;
+  padding: 0 8px;
+}
+.footer ul li a {
+  text-decoration: none;
+  color: #00376b;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.footer span {
+  float: right;
+  color: rgba(var(--f52,142,142,142),1);
+  font-size: 13px;
+  padding: 5px 60px;
 }
