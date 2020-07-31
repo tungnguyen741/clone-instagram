@@ -1,0 +1,134 @@
+.Menu {
+    display: flex;
+    justify-content: center;
+    background: #fff;
+    height: 54px;
+    width: 100%;
+    position: fixed;
+    border: 1px solid #eee;
+}
+.wrapper_menu {
+ 
+    height: 52px;
+    display: flex;
+    background-color: #fff;
+    align-items: center;
+    width: 60%;
+}
+.wrapper_menu img {
+    width: 105px;
+}
+.Home_Page {
+    flex-basis: 30%;
+    height: 100%;
+}
+.Home_Page a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.search_user {
+    flex-basis: 31%;
+    text-align: center;
+}
+.tool_bar {
+    display: flex;
+    height: 100%;
+    flex-basis: 31%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.wrapper_menu img {
+    width: 105px;
+    height: 100%;
+}
+.tool_bar img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.ToolBar {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s all;
+    position: absolute;
+    top: 22px;
+    display: flex;
+    flex-direction: column;
+}
+ 
+.showToolBar {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s all;
+    top: 46px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.search_user span {
+    position: relative;
+    right: 120px;
+    color: #999;
+    font-size: 14px;
+    pointer-events: none
+}
+
+ 
+.search_user input {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding-left: 15px;
+    height: 23px;
+}
+.search_user input:focus{
+    outline: none;
+}
+
+.changePlace {
+    position: absolute;
+    left: -172px;
+}
+.hiddenSearch{
+    opacity: 0;
+    visibility: hidden;
+}
+.users_finded {
+    border: 1px solid #aaa;
+    position: absolute;
+    top: 55px;
+    left: 617px;
+ 
+}
+.users_searched img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.users_searched a {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 9px;
+    background: #fff;
+}
+.users_searched a:hover{
+    background-color: rgba(var(--b3f,250,250,250),1);
+}
+.users_searched .user_avatar {
+    margin-right: 10px;
+}
+.user_name {
+    font-size: 14px;
+}
+.user_email {
+    color: #555;
+}

@@ -1,0 +1,28 @@
+.Footer {
+  width: 71.2%;
+  margin: 0 auto;
+  margin-top: 79px;
+  padding-bottom: 10%;
+}
+  .Footer ul {
+    list-style: none;
+    display: inline-block;
+    float: left;
+    margin: 0;
+  }
+  .Footer ul li {
+    display: inline-block;
+    padding: 0 8px;
+  }
+  .Footer ul li a {
+    text-decoration: none;
+    color: #00376b;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+  .Footer span {
+    float: right;
+    color: rgba(var(--f52,142,142,142),1);
+    font-size: 13px;
+    padding: 5px 60px;
+  }

@@ -1,0 +1,22 @@
+
+.have-account {
+    height: 63px;
+    border: 1px solid #ddd;
+    width: 347px;
+    margin-top: 9px;
+    background-color: #fff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
+  a.btn-sign-up {
+    border: 0;
+    background: 0;
+    color: #0095f6;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  a.btn-sign-up:focus{
+    outline: none;
+  }

@@ -1,0 +1,23 @@
+
+.app-download {
+    text-align: center;
+    width: 347px;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  
+  .img_app {
+    width: 347px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .img_app img{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  .img-app-store, .img-ch-play {
+    width: 138px;
+    padding: 0px 4px;
+  }

@@ -1,7 +1,17 @@
 import React from 'react'
 import { Component } from 'react';
 import classNames from 'classnames';
-
+import Sign_in from '../features/Sign_In/Sign_in';
+import Sign_up from '../features/Sign_Up/Sign_up';
+import NotFound from './NotFound';
+import Not_account from './Not_account'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
 import './Index.css'
 import img_phone from '../image/img_slide_index1.png'
 import img_1 from '../image/img_slide_index.jpg'
@@ -10,22 +20,25 @@ import img_3 from '../image/img_slide_index4.jpg'
 import img_4 from '../image/img_slide_index5.jpg'
 import img_5 from '../image/img_slide_index6.jpg'
 import logo_insta from '../image/instagram-new-logo.png'
-import logo_fb from '../image/facebook.svg'
-import logo_appstore from '../image/appstore.png'
-import logo_chplay from '../image/chplay.png'
-
+import Get_app from './Get_app';
+import Footer from './Footer';
+import ProfileFriend from '../features/ProfileFriend/ProfileFriend'
+import Profile from '../features/Profile/Profile'
+import Menu from '../features/Menu/Menu'
 export default class Index extends Component{
     constructor(){
         super();
         this.state={
           slideImg: 1,
-           img: img_1
+          img: img_1,
+          isRedirect: false
         }
-        this.changeImg = this.changeImg.bind(this);
         setInterval(()=>{
           this.changeImg(this.state.img);
         }, 3500);
-      }
+        this.changeImg = this.changeImg.bind(this);
+         
+      } 
       
       changeImg(img){
           if(img === img_1)
@@ -39,86 +52,97 @@ export default class Index extends Component{
           if(img === img_5)
             this.setState({img: img_1,  slideImg: 1})
       }
-    
+
+      
+  
+      DefaultPage = ()=>{
+        const info = JSON.parse( localStorage.getItem('info') );
+        if(info){
+          return (
+            <div className="DefaultPage">
+              <Menu />
+            </div>
+          )
+        }
+        return <Redirect to="/" />
+        
+      }
       render(){
-         
-        return (
-          <div className="Index">
-            <div className="container">
-                <div className="wrapper_content">
+        const info = JSON.parse( localStorage.getItem('info') );
+        if(info){
+          return(
+                <Router>
+                  <div className="signined">
+                    <Switch>
+                        <Route exact path="/" component={this.DefaultPage} />
+                        <Route exact path="/p/:id/" component={Profile} ></Route>
+                        <Route exact path="/:user_id/" component= {Profile}  ></Route>
+                    </Switch>
+                  </div>
+                 
+                </Router>
+            )
+          }
+    
+          return (
+        <Router>
+         <Switch>
+          <Route exact path="/accounts/emailsignup" >
+              <Sign_up/>
+          </Route>
+        
+          <Route exact path="/" >
+            <div className="Index">
+              <div className="container">
+                  <div className="wrapper_content">
 
-                    <div className="phone_slide">
-                        <img src={img_phone} alt=""/>  
-                        <div className="beside-phone-slide">
-                            <img src={img_1} className={classNames('img-slide','hide',{'show': this.state.slideImg===1})} alt=""/>
-                            <img src={img_2} className={classNames('img-slide','hide',{'show': this.state.slideImg===2})} alt=""/>
-                            <img src={img_3} className={classNames('img-slide','hide',{'show': this.state.slideImg===3})} alt=""/>
-                            <img src={img_4} className={classNames('img-slide','hide',{'show': this.state.slideImg===4})} alt=""/>
-                            <img src={img_5} className={classNames('img-slide','hide',{'show': this.state.slideImg===5})} alt=""/>
-                        </div>
-                    </div>
-
-                    <div className="wrapper_login">
-                          <div className="login">
-                            <div className="content-login">
-                              <h1><img src={logo_insta} alt=""/></h1>
-                              <form action="" method="">
-                                <input className="input_login" name="user_login" type="text" placeholder="Phone number, username, or email"/>
-                                <input className="input_login" name="password" type="password" placeholder="Password"/>
-                                <button className="btn-login" disabled="disabled">Log In</button>
-                              </form>
-                              <div className="line">
-                                <div className="line-through"></div>
-                                  <span>OR</span>
-                              </div>
-                              <div className="login-fb">
-                                <button className="btn-login-fb">
-                                  <img src={logo_fb} className="logo-fb" alt=""/>
-                                  <span className="login-fb">Log in with Facebook</span>
-                                </button>
-                              </div>
-                              <div className="forgot-password">
-                                <button className="forgot-pass">
-                                    Forgot password?
-                                </button>
-                              </div>
-                            </div>
+                      <div className="phone_slide">
+                          <img src={img_phone} alt=""/>  
+                          <div className="beside-phone-slide">
+                              <img src={img_1} className={classNames('img-slide','hide',{'show': this.state.slideImg===1})} alt=""/>
+                              <img src={img_2} className={classNames('img-slide','hide',{'show': this.state.slideImg===2})} alt=""/>
+                              <img src={img_3} className={classNames('img-slide','hide',{'show': this.state.slideImg===3})} alt=""/>
+                              <img src={img_4} className={classNames('img-slide','hide',{'show': this.state.slideImg===4})} alt=""/>
+                              <img src={img_5} className={classNames('img-slide','hide',{'show': this.state.slideImg===5})} alt=""/>
                           </div>
-                        <div className="have-account">
-                            <span>Don't have an account?</span>
-                            <button className="btn-sign-up">Sign up</button>
-                        </div>
-                        <div className="app-download">
-                            Get the app.
-                        </div>
-                            <div className="img_app">
-                              <div className="img-app-store">
-                                <img src={logo_appstore} alt=""/>
-                              </div>
-                              <div className="img-ch-play">
-                                <img src={logo_chplay} alt=""/>
+                      </div>
+
+                      <div className="wrapper_login">
+                            <div className="login">
+                              <div className="content-login">
+                                <h1><img src={logo_insta} alt=""/></h1>
+                                  <Sign_in/>
+                                <div className="line">
+                                  <div className="line-through"></div>
+                                    <span>OR</span>
+                                </div>
+                                <div className="login-fb">
+                                  <button className="btn-login-fb">
+                                    <div className="logo-fb"></div>
+                                    <span className="login-fb">Log in with Facebook</span>
+                                  </button>
+                                </div>
+                                <div className="forgot-password">
+                                  <button className="forgot-pass">
+                                      Forgot password?
+                                  </button>
+                                </div>
                               </div>
                             </div>
-                    </div>
-                </div>
-            </div> 
-              <div className="footer">
-                <ul >
-                    <li><a href="#">about</a></li>
-                    <li><a href="#">help</a></li>
-                    <li><a href="#">press</a></li>
-                    <li><a href="#">api</a></li>
-                    <li><a href="#">jobs</a></li>
-                    <li><a href="#">privacy</a></li>
-                    <li><a href="#">terms</a></li>
-                    <li><a href="#">locations</a></li>
-                    <li><a href="#">top accounts</a></li>
-                    <li><a href="#">hashtags</a></li>
-                    <li><a href="#">language</a></li>
-                </ul>
-                <span>© 2020 INSTAGRAM FROM FACEBOOK</span>
-              </div>
-          </div>
+                          <Not_account btn_signUp="Sign up">
+                            Don't have an account?
+                          </Not_account>
+                          <Get_app/>
+                      </div>
+                  </div>
+              </div> 
+            <Footer/>
+            </div>
+            </Route>
+
+              <Route component={NotFound} />
+            </Switch>
+          </Router>
           );
         }
-}
+      }

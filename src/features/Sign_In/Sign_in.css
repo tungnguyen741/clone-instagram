@@ -1,0 +1,88 @@
+button.btn-login {
+    display: block;
+    width: 100%;
+  }
+  input.input_login {
+    margin-bottom: 6px;
+    width: 93%;
+    border-radius: 2px;
+    background: #fafafa;
+    font-size: 11.5px;
+    padding: 9px 0px 5px 8px;
+    height: 24px;
+    border: 1px solid #dbdbdb;
+ 
+}
+input.input_login.input_login_pass {
+  margin-bottom: 15px;
+}
+  input.input_login:focus{
+    border: 1px solid #a8a8a8;
+    outline: none;
+  }
+.correct {
+    background: #0095f6 !important;
+    cursor: pointer;
+}
+a.show_pass {
+  position: absolute;
+  right: 171px;
+  top: 177px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+}
+.input_user_holder {
+  position: absolute;
+  left: 50px;
+  top: 133px;
+  font-size: 13px;
+  color: #757575;
+  letter-spacing: -.3px;
+  pointer-events: none;
+  transform: scale(1);
+  transition: 0.1s all;
+}
+.input_pass_holder {
+  position: absolute;
+  left: 50px;
+  top: 179px;
+  font-size: 13px;
+  color: #757575;
+  pointer-events: none;
+  transition: 0.1s all;
+  transform: scale(1);
+}
+span.user_holder_change {
+  position: absolute;
+  left: 31px;
+  top: 122px;
+  /* font-size: 11px; */
+  color: #757575;
+  letter-spacing: -.3px;
+  opacity: 1;
+  visibility: visible;
+  transition: 0.1s all;
+  transform: scale(0.8);
+}
+span.pass_holder_change {
+  position: absolute;
+  left: 42px;
+  top: 167px;
+ 
+  color: #757575;
+  opacity: 1;
+  visibility: visible;
+  transition: 0.1s all;
+  transform: scale(0.8);
+}
+
+.content-login p {
+  color: red;
+  font-size: 13px;
+  text-align: center;
+}
+.btn-signup{
+  cursor: pointer;
+}

@@ -1,0 +1,60 @@
+.Sign_up{
+    background-color: #fafafa;
+}
+.sign_up_not_account {
+    text-align: center;
+}
+.sign_up_get_app {
+    text-align: center;
+}
+.sign_up_get_app  .get-app {
+    display: inline-block;
+}
+.content_sign_up {
+    text-align: center;
+}
+.content_sign_up .login {
+    margin: 0;
+    display: inline-block;
+    height: 540px;
+}
+.content_sign_up {
+    padding-top: 13px;
+}
+.sign-up-form {
+    padding: 0 41px 41px 41px;
+}
+.sign-up-form input.input_sign_up.input_login {
+    margin-bottom: 6px;
+}
+.sign-up-form .line{
+    margin: 17px 0;
+}
+.logo-fb-blue{
+    width: 16px;
+    height: 16px;
+    background: url(../../image/facebook-blue.svg) no-repeat center / contain;
+    margin-right: 8px;
+}
+.sign-up-form .login-fb {
+    background: #0095f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    color: #fff;
+    border-radius: 3px;
+}
+.sign-up-form .login-fb .btn-login-fb{
+    margin: 0;
+}
+.sign-up-form h1 {
+    text-align: center;
+    margin: 0;
+    padding-top: 13px;
+}
+.sign-up-form p {
+    color: #8e8e8e;
+    font-weight: bold;
+    margin-top: -5px;
+}
