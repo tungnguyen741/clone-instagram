@@ -4,7 +4,7 @@ import './Menu.css'
 import classNames from 'classnames'
 import logo_insta from '../../image/instagram-new-logo.png'
 import {
-    Link, Redirect, Route
+    Link, Redirect, Route, BrowserRouter as Router
   } from "react-router-dom";
 import Profile from '../Profile/Profile'
 import Loading from '../Loading/Loading'
@@ -19,7 +19,8 @@ export default class Menu extends Component{
             isShowSearch: '',
             users_searched: [],
             users: [],
-            input_value: ''
+            input_value: '',
+            isOnFocus: false
         }
         this.search_user = React.createRef();
         this.showToolBar = this.showToolBar.bind(this);
@@ -31,6 +32,8 @@ export default class Menu extends Component{
 
     componentDidMount(){
         const info = JSON.parse( localStorage.getItem('info') );
+        console.log('DID MOUNT FC',this.search_user.current.value);
+  
         axios.get(this.url2, 
         axios.defaults.headers.common['Authorization'] = info.accessToken)
         .then(res =>{    
@@ -44,14 +47,15 @@ export default class Menu extends Component{
     handleLogout(){
         localStorage.removeItem("info");
     }
-    
+    // this.setState({isOnFocus: true})
     handleFocusSearch(e){
-        this.setState({isShowSearch: 'left'});
+        this.setState({isShowSearch: 'left', isOnFocus: false});
         if(e.target.value){
             this.setState({isShowSearch: 'hidden'})
-        }   
+        }
     }
     handleBlurSearch(e){
+        console.log('ON FOCUSSS')
         this.setState({isShowSearch: '', loading: false});
         if(e.target.value){
             this.setState({isShowSearch: 'hidden'})
@@ -59,15 +63,13 @@ export default class Menu extends Component{
     }
 
     handleSearch_user(e){
-         console.log('this.search_user.current.value ',this.search_user.current.value);
-        
         if(e.target.value !== ''){
             this.setState({isShowSearch: 'hidden'})
             // this.setState({loading: true, input_value: e.target.value});
             const users_searched = this.state.users.filter(user =>  user.email.includes(this.search_user.current.value.trim()));
             console.log('users_searched.lengthhhhhhhhh: ',users_searched.length, 'e.target.value: ', e.target.value.trim());
             if(users_searched.length !== 0){
-                this.setState({users_searched})
+                this.setState({users_searched, input_value: e.target.value})
             } 
 
         }
@@ -81,6 +83,7 @@ export default class Menu extends Component{
     }
     render(){
         // console.log('users_searched: ',this.state.users_searched);
+    
         const info = JSON.parse( localStorage.getItem('info') );
         if(this.state.users_searched){
             const users_searched = [].concat(this.state.users_searched).map(user => <div className="users_searched">
@@ -88,17 +91,21 @@ export default class Menu extends Component{
                 {user.email}
             </div> )
         }
+        
         if(info){
             return(
-            <div className="Menu">
+      
+                <div className="Menu">
+                
                 <div className="wrapper_menu">
                     <div className="Home_Page">
+                    
                         <Link to="/">
                             <img src={logo_insta} alt=""/>
                         </Link>
                         </div>
                         <div className="search_user">
-                            <input onFocus={this.handleFocusSearch} onBlur={this.handleBlurSearch} onChange={this.handleSearch_user} ref={this.search_user} type="text" name="user_name" />
+                            <input autoComplete="off" onFocus={this.handleFocusSearch} onBlur={this.handleBlurSearch} onChange={this.handleSearch_user} ref={this.search_user} type="text" name="user_name" />
                             <span className={classNames("placeSearch",{"changePlace": this.state.isShowSearch==='left'},  {'hiddenSearch': this.state.isShowSearch ==='hidden'})} >Search</span>
                         </div>
                         <div onClick={this.showToolBar} className="tool_bar">
@@ -112,7 +119,9 @@ export default class Menu extends Component{
                         </div>
                         {this.state.loading && <Loading />}
                         
-                        <div className="users_finded">
+                        
+                        
+                        <div className={classNames('users_finded', {"hidden":  this.state.isOnFocus})} >
                         {
                           (this.state.users_searched).map(user => <div className="users_searched">
                                 <Link to={`/${user.email}`} >
@@ -131,8 +140,11 @@ export default class Menu extends Component{
                             </div> )
                         }
                         </div> 
+                
                 </div>
+                
             </div>
+         
             );
         }else{
             return <Redirect to="/" />

@@ -11,6 +11,7 @@ a{
 }
 .img_posted {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .article a img {
@@ -20,7 +21,8 @@ a{
 .article {
     height: 305px;
     width: 31%;
-    padding-right: 5px;
+    padding: 0 10px;
+    margin-bottom: 15px;
 }
 
 .info_user {
@@ -124,10 +126,7 @@ a.a_overlay {
     position: absolute;
 }
 
-.wrapper_img_posted {
-    height: 300px;
-}
-
+ 
 span.like_by {
     pointer-events: none;
     font-weight: 100;
@@ -151,4 +150,7 @@ span.like_by {
 }
 span.user_other_like {
     cursor: pointer;
+}
+.img_posted::after {
+    content: "";
 }

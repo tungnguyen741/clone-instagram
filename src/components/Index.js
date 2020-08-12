@@ -25,6 +25,9 @@ import Footer from './Footer';
 import ProfileFriend from '../features/ProfileFriend/ProfileFriend'
 import Profile from '../features/Profile/Profile'
 import Menu from '../features/Menu/Menu'
+import DetailPost from '../features/DetailPost/DetailPost'
+import Post_img from '../features/Post_img/Post_img'
+
 export default class Index extends Component{
     constructor(){
         super();
@@ -60,7 +63,8 @@ export default class Index extends Component{
         if(info){
           return (
             <div className="DefaultPage">
-              <Menu />
+              <Post_img/>
+           
             </div>
           )
         }
@@ -68,19 +72,27 @@ export default class Index extends Component{
         
       }
       render(){
+      
         const info = JSON.parse( localStorage.getItem('info') );
-        if(info){
+        // let background = this.props.location.state && this.props.location.state.background;
+        if(info){  
           return(
-                <Router>
-                  <div className="signined">
-                    <Switch>
-                        <Route exact path="/" component={this.DefaultPage} />
-                        <Route exact path="/p/:id/" component={Profile} ></Route>
-                        <Route exact path="/:user_id/" component= {Profile}  ></Route>
-                    </Switch>
-                  </div>
-                 
-                </Router>
+            <Router>
+
+            <div className="Home">
+                      <Menu></Menu>
+                      <div className="signined">  
+                
+                        <Switch>
+                            <Route exact path="/" component={this.DefaultPage} />
+                            <Route exact path="/:user_id/"  render={(props) => (<Profile {...props} />)}/>     
+                            <Route path="/p/:id/"  component={DetailPost}/>
+                        </Switch>
+                      </div>
+                      {/* {1 && <Route path="/p/:id/"  component={DetailPost}/>} */}
+                      <Footer></Footer>
+            </div> 
+            </Router>
             )
           }
     
@@ -139,7 +151,6 @@ export default class Index extends Component{
             <Footer/>
             </div>
             </Route>
-
               <Route component={NotFound} />
             </Switch>
           </Router>
