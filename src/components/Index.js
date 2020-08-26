@@ -10,7 +10,8 @@ import {
   Switch,
   Route,
   Link,
-  Redirect
+  Redirect,
+  useLocation
 } from "react-router-dom";
 import './Index.css'
 import img_phone from '../image/img_slide_index1.png'
@@ -64,15 +65,21 @@ export default class Index extends Component{
           return (
             <div className="DefaultPage">
               <Post_img/>
-           
             </div>
           )
         }
         return <Redirect to="/" />
         
       }
-      render(){
       
+      render(){
+        let background = 1;
+        // if(this.props.location){
+        //   if(this.props.location.state){
+        //     background = this.props.location.state.background;
+        //   }
+        // }
+        console.log(this.props.location);
         const info = JSON.parse( localStorage.getItem('info') );
         // let background = this.props.location.state && this.props.location.state.background;
         if(info){  
@@ -80,13 +87,14 @@ export default class Index extends Component{
             <div className="Home">
               <Menu></Menu>
                       <div className="signined">  
-        
-                        <Switch>
+                        <Switch  >
                             <Route exact path="/" component={this.DefaultPage} />
-                            <Route exact path="/:user_id/"  render={(props) => (<Profile {...props} />)}/>     
-                            <Route path="/p/:id/"  component={DetailPost}/>
+                            {/* <Route path="/:user_id/"  render={(props) => (<Profile {...props} />)}/>      */}
+                            <Route location={background || this.props.location} path="/:user_id/" 
+                             render={(props) => <Profile {...props}/>}/> 
+                             />     
                         </Switch>
-                  
+                        {background &&  <Route path="p/:id/"  render={(props) => <DetailPost {...props}/>} /> }
                       </div>
                       {/* {1 && <Route path="/p/:id/"  component={DetailPost}/>} */}
                       <Footer></Footer>

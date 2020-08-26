@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import './Menu.css'
 import classNames from 'classnames'
-import logo_insta from '../../image/instagram-new-logo.png'
+import logo_insta from '../../image/instagram-new-logo.svg'
 import {
     Link, Redirect, Route, BrowserRouter as Router
   } from "react-router-dom";

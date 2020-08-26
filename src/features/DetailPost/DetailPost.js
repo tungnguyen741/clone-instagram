@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import loadingIcon from '../../image/loading.gif'
+import loadingIcon from '../../image/loading.svg'
 import './DetailPost.css'
 import { Redirect, Link, Router, Route } from 'react-router-dom';
 import axios from 'axios';
@@ -229,8 +229,8 @@ export default class DetailPost extends Component{
                 )
                    }
                 
-        if(this.state.loading)
-            return (<Loading/>)
+        // if(this.state.loading)
+        //     return (<Loading loadingIcon={loadingIcon} />)
 
      
 
@@ -240,7 +240,6 @@ export default class DetailPost extends Component{
                     <div className="container">
                      { imgPostDetail } 
                     </div>
-  
                 </div>
           
         );

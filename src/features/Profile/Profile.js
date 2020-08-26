@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import loadingIcon from '../../image/loading.gif'
+import loadingIcon from '../../image/loading2.svg'
 import './Profile.css'
 import { Redirect, Link,  BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import Comment from '../Comment/Comment'
 import ProfileFriend from '../ProfileFriend/ProfileFriend'
 import Menu from '../Menu/Menu'
 import DetailPost from '../DetailPost/DetailPost' 
+ 
 export default class Profile extends Component{
     constructor(){
         super();
@@ -27,12 +28,9 @@ export default class Profile extends Component{
         this.url = 'http://demo-express-codersx.herokuapp.com/api/users';
         this.url2 = 'http://localhost:3001/api/users';
         this.url3 = 'http://localhost:3001/api/post';
-        const info = JSON.parse( localStorage.getItem('info') );
-        
     }
     componentDidMount(){
         const info = JSON.parse( localStorage.getItem('info') );
-       
         //Get User detail by email in url
         axios.get(this.url2+"/name/"+this.props.match.params.user_id, axios.defaults.headers.common['Authorization'] = info.accessToken)    
             .then(res => {
@@ -66,9 +64,9 @@ export default class Profile extends Component{
    
                    
     render(){
-       
         const {match} = this.props;
         const info = JSON.parse( localStorage.getItem('info') );
+        console.log(this.props.location);
         if(!info){
             return <Redirect to="/" />
         }
@@ -85,7 +83,10 @@ export default class Profile extends Component{
 
                 var imgPosted = this.state.allPosted.map((p,i) =>
                     <div  className="article">
-                        <Link to={`/p/${p._id}`}>
+                        <Link to={{
+                            pathname: `/p/${p._id}`,
+                            state: { background: this.props.location }
+                        }}>
                                 <img src = {p.imgPostUrl} />
                         </Link>
                         
@@ -96,7 +97,7 @@ export default class Profile extends Component{
                 }
        // console.log('PROPS MATCH',this.props.match.params.user_id, 'INFO USER: ', info.user.email)
         if(this.state.loading)
-            return (<Loading/>)
+            return (<Loading loadingIcon={loadingIcon} />)
 
         if(this.props.match.params.user_id){
             if(this.props.match.params.user_id !=  info.user.email){
@@ -107,16 +108,14 @@ export default class Profile extends Component{
     //    console.log('LOCATION', this.props);
       
         return(   
-          
-            
                 <div className="Profile">
-             
                     <div className="container">
                         <div className="info_user">
                             <div className="avatar">
                                 <Link to="/">
                                     <img src={this.state.user_signed.avatarUrl} alt=""/>
                                 </Link>
+                                
                             </div>
                       
                             <div className="info_user_detail">
@@ -137,15 +136,12 @@ export default class Profile extends Component{
                         <div className="wrapper_img_posted">
                         <hr/>
                             <div className="img_posted">
-                                {imgPosted}
+                                {imgPosted} 
                             </div>
                         </div>
-
-                       
                     </div>
-               
+                   
                 </div>
-          
           );
         
     }

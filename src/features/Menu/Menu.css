@@ -5,7 +5,7 @@
     height: 54px;
     width: 100%;
     position: fixed;
-    border: 1px solid #eee;
+    border: 1px solid #dbdbdb;
     top:0
 }
 .wrapper_menu {
@@ -16,11 +16,8 @@
     align-items: center;
     width: 60%;
 }
-.wrapper_menu img {
-    width: 105px;
-}
 .Home_Page {
-    flex-basis: 30%;
+    flex-basis: 36%;
     height: 100%;
 }
 .Home_Page a {
@@ -31,6 +28,7 @@
 .search_user {
     flex-basis: 31%;
     text-align: center;
+    position: relative;
 }
 .tool_bar {
     display: flex;
@@ -43,7 +41,7 @@
 
 .wrapper_menu img {
     width: 105px;
-    height: 100%;
+    height: 75%;
 }
 .tool_bar img {
     width: 28px;
@@ -73,15 +71,14 @@
     display: flex;
     flex-direction: column;
 }
-
 .search_user span {
-    position: relative;
-    right: 120px;
+    position: absolute;
+    right: 45%;
     color: #999;
     font-size: 14px;
-    pointer-events: none
+    pointer-events: none;
+    top: 14%;
 }
-
  
 .search_user input {
     background: #fafafa;
@@ -96,7 +93,7 @@
 
 .changePlace {
     position: absolute;
-    left: -172px;
+    left: 6.5%;
 }
 .hiddenSearch{
     opacity: 0;

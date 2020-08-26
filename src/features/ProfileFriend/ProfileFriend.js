@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import loadingIcon from '../../image/loading.gif'
+import loadingIcon from '../../image/loading.svg'
 import '../ProfileFriend/ProfileFriend.css'
 import { Redirect, Link, Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
@@ -139,7 +139,7 @@ export default class ProfileFriend extends Component{
                    }
                 }
         if(this.state.loading)
-            return (<Loading/>)
+            return (<Loading loadingIcon={loadingIcon}/>)
         
                     
           
