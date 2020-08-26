@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5372270fc228c86c532c5613b7c49d47",
+    "revision": "7eb86c844ab5bdf182647e5b1d959d7e",
     "url": "/clone-instagram/index.html"
   },
   {
-    "revision": "ebb5d1923476dce8c434",
-    "url": "/clone-instagram/static/css/main.a8e7449b.chunk.css"
+    "revision": "aa7b812997a623126dbb",
+    "url": "/clone-instagram/static/css/main.d1447183.chunk.css"
   },
   {
-    "revision": "69abba048c780fee8a04",
-    "url": "/clone-instagram/static/js/2.ddf32b53.chunk.js"
+    "revision": "145e86c5dc3a8271c266",
+    "url": "/clone-instagram/static/js/2.fbc0ce9f.chunk.js"
   },
   {
     "revision": "88cbcb55f867c7e879dbc5e47becbf3b",
-    "url": "/clone-instagram/static/js/2.ddf32b53.chunk.js.LICENSE.txt"
+    "url": "/clone-instagram/static/js/2.fbc0ce9f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ebb5d1923476dce8c434",
-    "url": "/clone-instagram/static/js/main.40ab867a.chunk.js"
+    "revision": "aa7b812997a623126dbb",
+    "url": "/clone-instagram/static/js/main.2ef95184.chunk.js"
   },
   {
     "revision": "e1c5e15e68cd429e6151",
@@ -76,12 +76,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/clone-instagram/static/media/img_slide_index6.f5ae123a.jpg"
   },
   {
+    "revision": "128ed8a5032dcedd4105767a60c6c228",
+    "url": "/clone-instagram/static/media/instagram-new-logo.128ed8a5.svg"
+  },
+  {
     "revision": "bc33aae8be4f6d8ed7ac318ae538cd2c",
     "url": "/clone-instagram/static/media/instagram-new-logo.bc33aae8.png"
   },
   {
-    "revision": "8d7d7cee39c4a26c71a83bfdfdbadeb7",
-    "url": "/clone-instagram/static/media/loading.8d7d7cee.gif"
+    "revision": "57cc600061db3ef737280ea22269aed4",
+    "url": "/clone-instagram/static/media/loading.57cc6000.svg"
+  },
+  {
+    "revision": "89effbc6f712b48daa3968fcb88d2f37",
+    "url": "/clone-instagram/static/media/loading2.89effbc6.svg"
   },
   {
     "revision": "f51e4fb9dc00c00ec97df33a716a4e30",
