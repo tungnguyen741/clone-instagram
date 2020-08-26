@@ -34,10 +34,9 @@ export default class Sign_up extends Component{
  
         e.preventDefault();
         this.setState({loading: true});
-        axios.post(this.url2,{ name, email, password})
+        axios.post(process.env.REACT_APP_URL_USER,{ name, email, password})
             .then(res=>{
                 this.setState({loading: false, successful: true});
-                console.log(res);
             })
             .catch(err=>{
                 this.setState({loading: false, successful: false, err: err.response.data});

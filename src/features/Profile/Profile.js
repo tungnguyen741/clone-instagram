@@ -25,14 +25,12 @@ export default class Profile extends Component{
             isShowDetail: true,
             postedOfAuthor:[]
         }
-        this.url = 'http://demo-express-codersx.herokuapp.com/api/users';
-        this.url2 = 'http://localhost:3001/api/users';
-        this.url3 = 'http://localhost:3001/api/post';
+ 
     }
     componentDidMount(){
         const info = JSON.parse( localStorage.getItem('info') );
         //Get User detail by email in url
-        axios.get(this.url2+"/name/"+this.props.match.params.user_id, axios.defaults.headers.common['Authorization'] = info.accessToken)    
+        axios.get(process.env.REACT_APP_URL_USER+"/name/"+this.props.match.params.user_id, axios.defaults.headers.common['Authorization'] = info.accessToken)    
             .then(res => {
                 this.setState({loading: false, user_signed: res.data});
             })
@@ -42,14 +40,13 @@ export default class Profile extends Component{
             })
 
         //Get All Post filter Post of author
-        axios.get(`${this.url3}/${info.user._id}/author`)
+        axios.get(`${process.env.REACT_APP_URL_POST}/${info.user._id}/author`)
             .then(res => {
                 console.log('allPosted of users PR', res.data)
                 this.setState({loading: false, allPosted: res.data});
             })
             .catch(error => {
                 this.setState({loading: false});
-                console.log('USER SIGNED ERROR',error)
             })
     }
  
@@ -66,6 +63,7 @@ export default class Profile extends Component{
     render(){
         const {match} = this.props;
         const info = JSON.parse( localStorage.getItem('info') );
+          // let background = this.props.location.state && this.props.location.state.background;
         console.log(this.props.location);
         if(!info){
             return <Redirect to="/" />

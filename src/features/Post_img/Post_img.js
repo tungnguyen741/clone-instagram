@@ -10,9 +10,7 @@ import { Redirect } from 'react-router-dom';
 export default class Post_img extends Component{
     constructor(){
         super();
-        this.url = "http://localhost:3001/api/post"
         this.file_img = React.createRef();
-        //const cloudinaryCore = new cloudinary.Cloudinary({cloud_name: 'tungnguyen'});
         this.state={
             file:'',
             description: '',
@@ -40,7 +38,7 @@ export default class Post_img extends Component{
             }
         }
         
-        axios.post(this.url, formData, config)
+        axios.post(process.env.REACT_APP_URL_POST, formData, config)
         .then( res => {
             this.setState({postSuccess: true, loading: false});
             console.log(res.data);

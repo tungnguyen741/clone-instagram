@@ -34,7 +34,7 @@ export default class Menu extends Component{
         const info = JSON.parse( localStorage.getItem('info') );
         
         
-        axios.get(this.url2, 
+        axios.get(process.env.REACT_APP_URL_USER, 
         axios.defaults.headers.common['Authorization'] = info.accessToken)
         .then(res =>{    
             this.setState({users: res.data});

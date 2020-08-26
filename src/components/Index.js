@@ -61,6 +61,7 @@ export default class Index extends Component{
   
       DefaultPage = ()=>{
         const info = JSON.parse( localStorage.getItem('info') );
+        
         if(info){
           return (
             <div className="DefaultPage">
@@ -73,28 +74,23 @@ export default class Index extends Component{
       }
       
       render(){
-        let background = 1;
-        // if(this.props.location){
-        //   if(this.props.location.state){
-        //     background = this.props.location.state.background;
-        //   }
-        // }
-        console.log(this.props.location);
+       
         const info = JSON.parse( localStorage.getItem('info') );
-        // let background = this.props.location.state && this.props.location.state.background;
+        console.log(this.props.location);
         if(info){  
           return(
             <div className="Home">
-              <Menu></Menu>
+              <Menu/>
                       <div className="signined">  
                         <Switch  >
                             <Route exact path="/" component={this.DefaultPage} />
-                            {/* <Route path="/:user_id/"  render={(props) => (<Profile {...props} />)}/>      */}
-                            <Route location={background || this.props.location} path="/:user_id/" 
+                            <Route exact path="/:user_id/" component={Profile}/>     
+                            {/* <Route location={"" || this.props.location} exact path="/:user_id/" 
                              render={(props) => <Profile {...props}/>}/> 
-                             />     
+                             />      */}
+                            <Route  exact path="/p/:id/"  render={(props) => <DetailPost {...props}/>} /> 
                         </Switch>
-                        {background &&  <Route path="p/:id/"  render={(props) => <DetailPost {...props}/>} /> }
+                        {/* {"" &&  <Route path="p/:id/"  render={(props) => <DetailPost {...props}/>} /> } */}
                       </div>
                       {/* {1 && <Route path="/p/:id/"  component={DetailPost}/>} */}
                       <Footer></Footer>

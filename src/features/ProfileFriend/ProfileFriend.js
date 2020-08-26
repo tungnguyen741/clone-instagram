@@ -23,14 +23,12 @@ export default class ProfileFriend extends Component{
             postedOfAuthor: [],
             allPosted: []
         }
-        this.url = 'http://demo-express-codersx.herokuapp.com/api/users';
-        this.url2 = 'http://localhost:3001/api/users';
-        this.url3 = 'http://localhost:3001/api/post';
+
     }
     async componentDidMount(){
         const info = JSON.parse( localStorage.getItem('info') );
          try {
-             var user_signed = await axios.get(this.url2+"/name/"+this.props.match.params.user_id_friend, axios.defaults.headers.common['Authorization'] = info.accessToken);
+             var user_signed = await axios.get(process.env.REACT_APP_URL_USER+"/name/"+this.props.match.params.user_id_friend, axios.defaults.headers.common['Authorization'] = info.accessToken);
              await this.setState({loading: false, user_signed: user_signed.data});
          } catch (error) {
             this.setState({loading: false});
@@ -38,7 +36,7 @@ export default class ProfileFriend extends Component{
          }
              
          try {
-            var res = await axios.get(`${this.url3}/${this.state.user_signed._id}/author`);
+            var res = await axios.get(`${process.env.REACT_APP_URL_POST}/${this.state.user_signed._id}/author`);
             this.setState({loading: false, allPosted: res.data});
          } catch (error) {
             this.setState({loading: false});
@@ -65,17 +63,7 @@ export default class ProfileFriend extends Component{
     handleLogout(){
         localStorage.removeItem("info");
     }
-    async handleUserDetailAuthor(id){
-        try { 
-            const info = JSON.parse( localStorage.getItem('info') );
-            axios.defaults.headers.common['Authorization'] = info.accessToken;
-            const res = await axios.get(this.url2+"/"+id);
-            this.setState({loading: false});
-        } catch (error) {
-            this.setState({loading: false});
-            console.log('USER SIGNED ERROR',error)
-        }
-    }
+     
 
     isShowOverlay(){
         this.setState({isShowOverlay: !this.state.isShowOverlay})
@@ -85,7 +73,7 @@ export default class ProfileFriend extends Component{
         const info = JSON.parse( localStorage.getItem('info') );
         if (this.props.location.pathname !== prevProps.location.pathname) {
             try {
-                var res = await axios.get(this.url2+"/name/"+this.props.match.params.user_id_friend, axios.defaults.headers.common['Authorization'] = info.accessToken);
+                var res = await axios.get(process.env.REACT_APP_URL_USER+"/name/"+this.props.match.params.user_id_friend, axios.defaults.headers.common['Authorization'] = info.accessToken);
                await this.setState({loading: false, user_signed: res.data});
             } catch (error) {
                this.setState({loading: false});
@@ -93,7 +81,7 @@ export default class ProfileFriend extends Component{
             }
                 
             try {
-               var res = await axios.get(`${this.url3}/${this.state.user_signed._id}/author`);
+               var res = await axios.get(`${process.env.REACT_APP_URL_POST}/${this.state.user_signed._id}/author`);
                this.setState({loading: false, allPosted: res.data});
             } catch (error) {
                this.setState({loading: false});

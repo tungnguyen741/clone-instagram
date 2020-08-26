@@ -21,7 +21,7 @@ export default class Comment extends Component{
         const info = JSON.parse( localStorage.getItem("info") );
         console.log("COMMENT");
         this.inputCmt.current.value = "";
-        axios.post(`http://localhost:3001/api/post/${this.props.data.params.id}/comment`, {
+        axios.post(`${process.env.REACT_APP_URL_POST}/${this.props.data.params.id}/comment`, {
             "userCommented": info.user._id,
             "textCommented": this.state.textCommented
         })

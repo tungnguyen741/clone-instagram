@@ -41,7 +41,7 @@ export default class DetailPost extends Component{
     }
     componentDidMount(){
         const info = JSON.parse( localStorage.getItem('info') );
-        axios.get(this.url2+"/"+this.props.match.params.id, axios.defaults.headers.common['Authorization'] = info.accessToken)    
+        axios.get(process.env.REACT_APP_URL_POST+"/"+this.props.match.params.id, axios.defaults.headers.common['Authorization'] = info.accessToken)    
         .then(res => {
             const u_isLiked = res.data.likes.find(item => item._id === info.user._id);
             this.setState({loading: false, postDetail: res.data, isLiked: u_isLiked, amountLike: res.data.likes.length, userCommented: res.data.comments});

@@ -12,7 +12,7 @@ export default class Like extends Component {
         console.log("LIKE");
         this.props.handleLikePost();
         this.props.handleUpAmountLike();
-        axios.post(`http://localhost:3001/api/post/${this.props.data.params.id}/like`, {
+        axios.post(`${process.env.REACT_APP_URL_POST}/${this.props.data.params.id}/like`, {
             "id_user_like": info.user._id
         })
         .then(res => {
@@ -25,7 +25,7 @@ export default class Like extends Component {
         console.log("unlike")
         this.props.handleDownAmountLike();
         this.props.handleLikePost();
-        axios.post(`http://localhost:3001/api/post/${this.props.data.params.id}/unlike`, {
+        axios.post(`${process.env.REACT_APP_URL_POST}/${this.props.data.params.id}/unlike`, {
             "id_user_like": info.user._id
         })
         .then(res => {

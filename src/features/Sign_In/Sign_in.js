@@ -3,9 +3,9 @@ import './Sign_in.css'
 import classNames from 'classnames'
 import axios from 'axios'
 import Index from '../../components/Index'
-import { Router, Redirect, Route, Link } from 'react-router-dom';
+import { Router, Redirect, Route, Link } from 'react-router-dom'
 import Loading from '../Loading/Loading'
-
+import loadingIcon from '../../image/loading.svg'
 export default class Sign_in extends Component{
     constructor(){
         super();
@@ -38,22 +38,18 @@ export default class Sign_in extends Component{
     }
     check_user_pwd(e){
         this.setState({loading: true});
-        const url1 = 'http://localhost:3001/api/login'; 
-        const url2 = 'http://demo-express-codersx.herokuapp.com/api/login';
         e.preventDefault();
         console.log(this.login_user.current.value, this.login_pwd.current.value)
         console.log(this.state.user, this.state.pwd)
-        axios.post(url1,{
+        axios.post( process.env.REACT_APP_URL_LOGIN ,{
             "email": this.state.user,
             "password": this.state.pwd
         })
         .then(res=>{
-            console.log('Dang nhap thanh cong', res);
             localStorage.setItem('info', JSON.stringify(res.data) )
             this.setState({isPass: true,loading: false, infoUser: res.data, token: res.token});
         })
-        .catch(res=>{
-            console.log('Dang nhap that bai', res);
+        .catch(err=>{
             this.setState({isPass: false, loading: false})
         })
     }
@@ -89,7 +85,7 @@ export default class Sign_in extends Component{
                     this.state.isPass===false && <p>The username you entered doesn't belong to an account. Please check your username and try again.</p>
                 }
                 {
-                    this.state.loading && <Loading />
+                    this.state.loading && <Loading loadingIcon={loadingIcon} />
                 }
                 <button className={classNames("btn-login",{correct: this.state.disable===""})} disabled={this.state.disable} type="submit">Log In</button>
                
