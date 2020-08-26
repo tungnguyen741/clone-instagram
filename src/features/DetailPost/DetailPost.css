@@ -1,0 +1,236 @@
+ 
+.post_detail img {
+    width: 100%;
+    height: 100%;
+}
+.info_user_detail .user_name {
+    font-weight: 200;
+    font-size: 25px;
+}
+.author img, .user_nameAvatar img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 1px solid #efefef;
+}
+.author, .user_nameAvatar a, .user_comment {
+    display: flex;
+    align-items: center;
+}
+.author_name, .user_name {
+    font-weight: bold;
+    margin-right: 6px;
+    white-space: nowrap;
+}
+.user_nameAvatar{
+    margin-right: 7px;
+    display: flex;
+}
+.user_like, .user_other_like{
+    font-weight: bold;
+} 
+.post_detail {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    margin: 0 auto;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    z-index: 2;
+    bottom: 15%;
+    height: 80%;
+}
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    background: rgba(0,0,0,.5);
+}
+.Img_posted {
+    flex-basis: 70%;
+}
+.info_detail {
+    flex-basis: 40%;
+    background: #fff;
+    height: 100%;
+    position: relative;
+}
+.a_overlay{
+    cursor: auto;
+}
+
+img.close_post {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-weight: bold;
+}
+a.a_overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+ 
+span.like_by {
+    pointer-events: none;
+    font-weight: 100;
+    font-size: 14px;
+    margin-right: 5px;
+}
+.user_nameAvatar a .avatar_like{
+    width: 40px;
+    height: 40px;
+    border: 1px solid #efefef;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+.user_like .user_nameAvatar {
+    margin-right: -2px;
+}.other_likes span:first-child {
+    margin-right: 4px;
+}
+span.user_other_like {
+    cursor: pointer;
+}
+ 
+
+.info_user_detail {
+    display: flex;
+    height: 134px;
+    flex-direction: column;
+    place-content: space-between;
+}
+hr {
+    opacity: .2;
+    margin: 0;
+}
+.author, .user_comment, .btn_emoji, .likes{
+    padding: 10px 20px;
+}
+.user_comment{
+    justify-content: space-between;
+    position: relative;
+}
+.btn_emoji{
+    display: flex
+}
+.likes span {
+    margin: 0 2.5px;
+}
+.wrapper_comment {
+    overflow: overlay;
+    height: 53%;
+}
+.wrapper_comment::-webkit-scrollbar {
+    content: "";
+}
+
+
+.wrapper_other_likes {
+    position: absolute;
+    top: 10%;
+    right: 90%;
+    border: 1px solid #fff;
+    background: #fff;
+    border-radius: 10px;
+    overflow: overlay;
+    height: 75%;
+    width: 400px;
+    padding-right: 15px;
+}
+.other_likes {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+}
+.header_other_likes {
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid #efefef;
+    font-weight: 500;
+    padding: 7px 0;
+}
+.wrapper_other_likes::-webkit-scrollbar {
+    width: 17px;
+}
+.wrapper_other_likes::-webkit-scrollbar-track {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #f1f1f1;
+}
+.wrapper_other_likes::-webkit-scrollbar-thumb {
+    background:#7d7d7d;
+}
+.wrapper_other_likes::-webkit-scrollbar-thumb:hover {
+    background: #000
+}
+span.user_other_like::selection {
+    background: none;
+}button.btn_follow {
+    border: 1px solid #efefef;
+    background: #fff;
+    height: 30px;
+    padding: 0 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.img_posted {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* flex-flow: wrap-reverse;
+    flex-direction: row-reverse; */
+}
+.img_posted::after {
+    content: "";
+    flex-basis: 31%;
+}
+.btn_comment, .btn_share{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+.btn_comment img, .btn_share img{
+    width: 30px;
+    height: 30px
+}
+.btn_comment:focus, .btn_share:focus{
+    outline: none;
+}
+
+.like_first {
+    display: flex;
+    align-items: center;
+}
+
+.user_comment:hover .delCmt{
+    display: inline-block
+}
+.delCmt {
+    display: none;
+    align-self: end;
+    font-size: 21px;
+    position: absolute;
+    right: 32px;
+    font-weight: 500;
+    color: #aaa;
+    cursor: pointer;
+}
+.avatar_content {
+    display: flex;
+}

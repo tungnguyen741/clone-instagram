@@ -32,8 +32,8 @@ export default class Menu extends Component{
 
     componentDidMount(){
         const info = JSON.parse( localStorage.getItem('info') );
-        console.log('DID MOUNT FC',this.search_user.current.value);
-  
+        
+        
         axios.get(this.url2, 
         axios.defaults.headers.common['Authorization'] = info.accessToken)
         .then(res =>{    
@@ -55,7 +55,7 @@ export default class Menu extends Component{
         }
     }
     handleBlurSearch(e){
-        console.log('ON FOCUSSS')
+
         this.setState({isShowSearch: '', loading: false});
         if(e.target.value){
             this.setState({isShowSearch: 'hidden'})
@@ -67,19 +67,13 @@ export default class Menu extends Component{
             this.setState({isShowSearch: 'hidden'})
             // this.setState({loading: true, input_value: e.target.value});
             const users_searched = this.state.users.filter(user =>  user.email.includes(this.search_user.current.value.trim()));
-            console.log('users_searched.lengthhhhhhhhh: ',users_searched.length, 'e.target.value: ', e.target.value.trim());
+        
             if(users_searched.length !== 0){
                 this.setState({users_searched, input_value: e.target.value})
             } 
 
         }
-        // const info = JSON.parse( localStorage.getItem('info') );
-        // axios.get(this.url2+"/name/"+e.target.value, 
-        // axios.defaults.headers.common['Authorization'] = info.accessToken)
-        // .then(res =>{    
-        //     this.setState({loading: false, users_searched: res.data});
-        // })
-        // .catch(err => console.log(err.message));
+  
     }
     render(){
         // console.log('users_searched: ',this.state.users_searched);

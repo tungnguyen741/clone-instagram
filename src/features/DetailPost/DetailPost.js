@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import loadingIcon from '../../image/loading.gif'
-import '../Profile/Profile.css'
+import './DetailPost.css'
 import { Redirect, Link, Router, Route } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../../components/Footer'
@@ -9,6 +9,9 @@ import Loading from '../Loading/Loading'
 import Comment from '../Comment/Comment'
 import ProfileFriend from '../ProfileFriend/ProfileFriend'
 import Menu from '../Menu/Menu'
+import Like from '../Like/Like'
+import comment from "../../image/comment.svg"
+import share from "../../image/share.svg"
 export default class DetailPost extends Component{
     constructor(){
         super();
@@ -20,74 +23,67 @@ export default class DetailPost extends Component{
             loading: true,
             user_signed: {},
             postDetail:[],
-            infoAuthor:{}
+            infoAuthor:{},
+            btn_like: false,
+            isLiked: false,
+            isFocusCmt: false,
+            amountLike: 0,
+            userCommented: ""
         }
         this.url = 'http://demo-express-codersx.herokuapp.com/api/users';
         this.url1 = 'http://localhost:3001/api/users';
         this.url2 = 'http://localhost:3001/api/post';
-        this.handleUserDetail = this.handleUserDetail.bind(this);
+ 
  
         this.isShowOverlay = this.isShowOverlay.bind(this);
-        this.handleShowLike = this.handleShowLike.bind(this);
-        this.handleUserLikeAll = this.handleUserLikeAll.bind(this);
         const info = JSON.parse( localStorage.getItem('info') );
  
     }
     componentDidMount(){
         const info = JSON.parse( localStorage.getItem('info') );
-         
-        axios.get(this.url1, axios.defaults.headers.common['Authorization'] = info.accessToken)
-            .then(res=> {
-                this.setState({loading: false,users: res.data})
-
-                axios.get(this.url2+"/"+this.props.match.params.id, axios.defaults.headers.common['Authorization'] = info.accessToken)    
-                .then(res => {
-                    console.log('DA SET LOCAL VA STATE!!!: ', res.data )
-                    const infoAuthor = this.state.users.find(user=> user._id === res.data.authorID);
-                    this.setState({loading: false, postDetail: res.data, infoAuthor});
-                })
-                .catch(error => {
-                    this.setState({loading: false});
-                    console.log('USER SIGNED ERROR',error)
-                })
-            } )
-            .catch(err =>{
-                this.setState({loading: false});
-                 console.log(err) });   
-
-       
+        axios.get(this.url2+"/"+this.props.match.params.id, axios.defaults.headers.common['Authorization'] = info.accessToken)    
+        .then(res => {
+            const u_isLiked = res.data.likes.find(item => item._id === info.user._id);
+            this.setState({loading: false, postDetail: res.data, isLiked: u_isLiked, amountLike: res.data.likes.length, userCommented: res.data.comments});
+        })
+        .catch(error => {
+            this.setState({loading: false});
+            console.log('USER SIGNED ERROR',error)
+        })       
+    }
+    handleFocusCmt = () => {
+        this.setState({isFocusCmt: true})
     }
 
+    handleLikePost = () => {
+        //this.setState({btn_like : !this.state.btn_like})
+        this.setState((prevState) => ({ isLiked: !prevState.isLiked  }))
+    }
 
-    handleUserDetail(id){
-        return this.state.users.filter(user => user._id == id).map(user => 
-            <div className="user_nameAvatar">
-                <Link to={`/${user.email}/`}>                  
-                        <img src= {user.avatarUrl} alt=""/>
-                        <span className="user_name">{user.name}</span> 
-                </Link>
-              
-            </div>
-        );
+    handleUnlikePost = () => {
+        this.setState({isLiked : true})
     }
-    handleUserLikeAll(id){
-        return this.state.users.filter(user => user._id == id).map(user => 
-            <div className="user_nameAvatar">
-                <Link to={`/${user.email}/`}>                  
-                        <img className="avatar_like" src= {user.avatarUrl} alt=""/>
-                        <span className="like_by">Like by </span> 
-                        <span className="user_name">{ user.name}</span> 
-                </Link>
-              
-            </div>
-        );
-    }
-    handleShowLike(){
+    handleShowLike = () => {
         this.setState({isShowUsersLike: !this.state.isShowUsersLike});
     }
- 
+    handleUpAmountLike = () => {
+        this.setState((prevState) => ({ amountLike: prevState.amountLike + 1  }))
+    }
+    handleDownAmountLike = () => {
+        this.setState((prevState) => ({ amountLike: prevState.amountLike - 1  }))
+    }
 
-    isShowOverlay(){
+    handleComment = (item) => {
+        this.setState((prevState)=> ({ userCommented: prevState.userCommented.concat(item) }))
+    }
+
+    handleDelComment = (item) => {
+        let i = this.state.userCommented.indexOf(item);
+        this.setState((prevState) => ({userCommented: prevState.userCommented.slice(0,i).concat(prevState.userCommented.slice(i+1) ) }));
+        
+    }
+
+    isShowOverlay(){    
         this.setState({isShowOverlay: !this.state.isShowOverlay})
     }
 
@@ -105,28 +101,27 @@ export default class DetailPost extends Component{
         this.props.history.goBack();
     }; 
     render(){
-        
         const {match} = this.props;
-        const {infoAuthor} = this.state; 
+      
         const info = JSON.parse( localStorage.getItem('info') );
         if(!info){
             return <Redirect to="/" />
         }
-        
+
             if(!this.isEmpty(this.state.postDetail)){
-                
-                console.log( 'postClone: ', [].concat(this.state.postDetail), '\n info author:', infoAuthor)
                 var imgPostDetail = [].concat(this.state.postDetail).map( (post, i)=> <div>
                     <img src={post.imgPostUrl} alt=""/>
                      
                 </div>)
                 var imgPostDetail = [].concat(this.state.postDetail).map( (post, i)=>
+                
                     <div className="overlay">
-                        <Link className="a_overlay" onClick={this.isShowOverlay} to={`/${infoAuthor.email}`}>
-                            <Link onClick={this.isShowOverlay} to={`/${infoAuthor.email}`}>
+               
+                        <Link className="a_overlay" onClick={this.isShowOverlay} to={`/${post.authorID.email}`}>
+                            <Link onClick={this.isShowOverlay} to={`/${post.authorID.email}`}>
                                 <img className="close_post" src={closeIcon} alt=""/>
                             </Link>
-                            
+              
                         </Link>
                         <div key={i} className="post_detail">
                         <div className="Img_posted">
@@ -134,48 +129,98 @@ export default class DetailPost extends Component{
                         </div>
                             <div className="info_detail">
                                 <div className="author">
-                                    <img src={infoAuthor.avatarUrl} alt=""/>
-                                    <span className="author_name">{infoAuthor.email}</span>
+                                    <img src={post.authorID.avatarUrl} alt=""/>
+                                    <span className="author_name">{post.authorID.email}</span>
                                 </div>
                                 <hr/>
 
                                 <div className="author">
-                                    <img src={infoAuthor.avatarUrl} alt=""/>
-                                    <span className="author_name">{infoAuthor.email}</span>
+                                    <img src={post.authorID.avatarUrl} alt=""/>
+                                    <span className="author_name">{post.authorID.email}</span>
                                     {post.description}
                                 </div>
-                                {/* ========================== COMMENTS ========================== */}
+                                {/* ==========================User COMMENTS ========================== */}
+                              <div className="wrapper_comment">
                                 {
-                                    post.comments.map(cmt=><div className="wrapper_comment">
-                                                { this.handleUserDetail(cmt.userCommented) }
-                                                {cmt.textCommented}
+
+                                    this.state.userCommented.map(cmt=><div className="user_comment">
+                                                <div className="user_nameAvatar">
+                                                    <div className="avatar_content">
+                                                        <Link to={`/${cmt.userCommented.email}/`}>                  
+                                                                <img src= {cmt.userCommented.avatarUrl} alt=""/>    
+                                                        </Link>
+
+                                                        <div className="content_comment">
+                                                            <Link to={`/${cmt.userCommented.email}/`}>                
+                                                                    <span className="user_name">{cmt.userCommented.name}</span>                                                
+                                                                </Link>
+                                                                {cmt.textCommented}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    <span className="delCmt" onClick={() => this.handleDelComment(cmt)} >...</span>
+                                       
                                     </div>)
                                 }
+                                </div>
                                 {/* ========================== btn like, cmt, share ==========================  */}
                                 <hr/>
                                 <div className="btn_emoji">
-                                    <button>Like</button>
-                                    <button>Comment</button>
-                                    <button>Share</button>
+                                 {/*======== ISLIKED BY ME ========*/}
+                                 { <Like liked={this.state.isLiked ? true : false} amountLike={this.state.amountLike} handleUpAmountLike={this.handleUpAmountLike} handleDownAmountLike={this.handleDownAmountLike}  handleLikePost={this.handleLikePost} data={this.props.match} />   }
+                                    <button onClick={this.handleFocusCmt} className="btn_comment"> <img src={comment} alt=""/> </button>
+                            
+                                    <button className="btn_share"> <img src={share} alt=""/> </button>
                                 </div>
-                                {/* ========================== LIKES ==========================  */}
+                              
+
+
+                           
+                             
                                <div className="likes">
-                               {
-                                    post.likes.slice(0,1).map(like=><div className="user_like">
-                                        { this.handleUserLikeAll(like.userLiked) }
-                                        
-                                    </div>)
+                               {/* {
+                                {/* ========================== User LIKES ==========================  */}
+                                { post.likes.length === 0 ?
+                                   ! this.state.isLiked ?  <div className="like_first">
+                                            Be the first to
+                                            <Like liked={this.state.isLiked ? true : false} handleUpAmountLike={this.handleUpAmountLike} handleDownAmountLike={this.handleDownAmountLike}  handleLikePost={this.handleLikePost} data={this.props.match} />
+                                </div>
+                                : <span className="user_other_like " onClick={this.handleShowLike}>1 like</span>
+                                : ""
                                 }
+                       
+                                  {/* other User LIKES rest */}
                                 {
-                                    post.likes.slice(1).map(likeAll => <div className="other_likes">
-                                        <span>and</span> 
-                                        <span className="user_other_like" onClick={this.handleShowLike}>{post.likes.length - 1} others</span>
-                                        {this.state.isShowUsersLike && this.handleUserDetail(likeAll.userLiked)}
+                                    post.likes.length >= 1 &&
+                                    <div className="other_like_list">
+                                 
+                                        {/* <span className="user_other_like" onClick={this.handleShowLike}>  { this.state.isLiked ? (post.likes.length - 1 ) + " others" :  (post.likes.length-2 === 0 ? "" :post.likes.length-2 + " others")  } </span> */}
+                                        { <span className="user_other_like" onClick={this.handleShowLike}> { this.state.amountLike !== 0 ? this.state.amountLike + " like" : <span className="like_first">
+                                            Be the first to
+                                            <Like liked={this.state.isLiked ? true : false} handleUpAmountLike={this.handleUpAmountLike} handleDownAmountLike={this.handleDownAmountLike}  handleLikePost={this.handleLikePost} data={this.props.match} />
+                                </span> }  </span>}
+                                    </div> 
+
+                                }
+
+                               {this.state.isShowUsersLike && <div className="wrapper_other_likes">
+                               <div className="header_other_likes">Likes</div>
+                               {
+                                    post.likes.map(like => <div className="other_likes">
+                                        
+                                         <div className="user_nameAvatar">
+                                            <Link to={`/${like.email}/`}>                  
+                                                    <img className="avatar_like" src= {like.avatarUrl} alt=""/>
+                                                    <span className="user_name">{ like.name}</span> 
+                                            </Link>
+                                        </div>
+                                        <button className="btn_follow">Follow</button>
                                     </div>)
                                 }
+                                </div>}
                                </div>
-                                <hr/>
-                            <Comment/>
+                            
+                            <Comment data={this.props.match} handleComment={this.handleComment} isFocusCmt={this.state.isFocusCmt} />
                             </div>
                         </div>
                         

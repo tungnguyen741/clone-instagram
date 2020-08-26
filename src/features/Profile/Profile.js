@@ -20,7 +20,7 @@ export default class Profile extends Component{
             isShowOverlay: false,
             loading: true,
             user_signed: {},
-            posted:[],
+            allPosted:[],
             isShowDetail: true,
             postedOfAuthor:[]
         }
@@ -32,11 +32,7 @@ export default class Profile extends Component{
     }
     componentDidMount(){
         const info = JSON.parse( localStorage.getItem('info') );
-        //Get All User
-        axios.get(this.url2, axios.defaults.headers.common['Authorization'] = info.accessToken)
-            .then(res=> this.setState({users: res.data}) )
-            .catch(err => console.log(err) );   
-
+       
         //Get User detail by email in url
         axios.get(this.url2+"/name/"+this.props.match.params.user_id, axios.defaults.headers.common['Authorization'] = info.accessToken)    
             .then(res => {
@@ -48,10 +44,10 @@ export default class Profile extends Component{
             })
 
         //Get All Post filter Post of author
-        axios.get(this.url3)
+        axios.get(`${this.url3}/${info.user._id}/author`)
             .then(res => {
-                const postedOfAuthor = res.data.filter(post=> post.authorID == info.user._id)
-                this.setState({loading: false, posted: res.data, postedOfAuthor});
+                console.log('allPosted of users PR', res.data)
+                this.setState({loading: false, allPosted: res.data});
             })
             .catch(error => {
                 this.setState({loading: false});
@@ -77,17 +73,17 @@ export default class Profile extends Component{
             return <Redirect to="/" />
         }
        
-        console.log('postedOfAuthorpostedOfAuthorpostedOfAuthor',this.state.postedOfAuthor);
+        //console.log('postedOfAuthorpostedOfAuthorpostedOfAuthor',this.state.postedOfAuthor);
         if(!this.isEmpty(this.state.user_signed))
         {
-            if(this.state.postedOfAuthor.length){
+            if(this.state.allPosted.length){
                 var postClone = [];
                 var position = 0;
                 if(this.props.match.params.id)
                     position = this.props.match.params.id - 1
-                postClone.push( this.state.user_signed.post[position] );
+                postClone.push( this.state.allPosted[position] );
 
-                var imgPosted = this.state.postedOfAuthor.map((p,i) =>
+                var imgPosted = this.state.allPosted.map((p,i) =>
                     <div  className="article">
                         <Link to={`/p/${p._id}`}>
                                 <img src = {p.imgPostUrl} />
@@ -98,7 +94,7 @@ export default class Profile extends Component{
                
                    }
                 }
-        console.log('PROPS MATCH',this.props.match.params.user_id, 'INFO USER: ', info.user.email)
+       // console.log('PROPS MATCH',this.props.match.params.user_id, 'INFO USER: ', info.user.email)
         if(this.state.loading)
             return (<Loading/>)
 
@@ -108,7 +104,7 @@ export default class Profile extends Component{
                 return  <Route exact path="/:user_id_friend/" component= {ProfileFriend}  />
             }
         }
-       console.log('LOCATION', this.props);
+    //    console.log('LOCATION', this.props);
       
         return(   
           
@@ -127,7 +123,9 @@ export default class Profile extends Component{
                                 <div className="user_name">
                                 {this.state.user_signed.email}
                                 </div>
-                                <span className="amount_post">{this.state.postedOfAuthor.length}</span> posts
+                                <div className="wrapper_amount_post">
+                                    <span className="amount_post">{this.state.allPosted.length}</span> posts
+                                </div>
                                 <div className="full_name">
                                     {this.state.user_signed.name}
                                 </div>    

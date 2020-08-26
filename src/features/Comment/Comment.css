@@ -1,0 +1,37 @@
+.Comment {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    border-top: 0.5px solid #efefef;
+}
+.Comment form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.Comment input {
+    padding: 14px 15px;
+    border: none;
+    width: 80%;
+    background: transparent;
+}
+.Comment input:focus,  
+.btn_post_cmt:focus{
+    outline: none;
+}
+ 
+.btn_post_cmt {
+    border: 0;
+    text-transform: capitalize;
+    color: #b3dffc;
+    font-weight: bold;
+    background: transparent;
+    cursor: pointer;
+    width: 20%;
+}
+.active{
+    color: #0095f6;
+}
+

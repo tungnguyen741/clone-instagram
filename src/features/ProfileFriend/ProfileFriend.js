@@ -21,41 +21,31 @@ export default class ProfileFriend extends Component{
             loading: true,
             user_signed: {},
             postedOfAuthor: [],
-            posted: []
+            allPosted: []
         }
         this.url = 'http://demo-express-codersx.herokuapp.com/api/users';
         this.url2 = 'http://localhost:3001/api/users';
         this.url3 = 'http://localhost:3001/api/post';
     }
-    componentDidMount(){
+    async componentDidMount(){
         const info = JSON.parse( localStorage.getItem('info') );
-        if(info){
-        }
-        axios.get(this.url2, axios.defaults.headers.common['Authorization'] = info.accessToken)
-            .then(res=> this.setState({users: res.data}) )
-            .catch(err => console.log(err) );   
-
-            // axios.get(this.url2+"/name/"+this.props.match.params.user_id_friend, axios.defaults.headers.common['Authorization'] = info.accessToken)    
-        axios.get(this.url2+"/name/"+this.props.match.params.user_id_friend, axios.defaults.headers.common['Authorization'] = info.accessToken)    
-            .then(res => {
-                console.log('ProfileFriend: ',this.props.match.params.user_id_friend )
-                this.setState({loading: false, user_signed: res.data});
-                    axios.get(this.url3)
-                        .then(res => {
-                            const postedOfAuthor = res.data.filter(post=> post.authorID == this.state.user_signed._id)
-                            this.setState({loading: false, posted: res.data, postedOfAuthor});
-                        })
-                        .catch(error => {
-                            this.setState({loading: false});
-                            console.log('USER SIGNED ERROR',error)
-                        })
-            })
-            .catch(error => {
-                this.setState({loading: false});
-                console.log('USER SIGNED ERROR',error)
-            })
-
-        
+         try {
+             var user_signed = await axios.get(this.url2+"/name/"+this.props.match.params.user_id_friend, axios.defaults.headers.common['Authorization'] = info.accessToken);
+             await this.setState({loading: false, user_signed: user_signed.data});
+         } catch (error) {
+            this.setState({loading: false});
+            console.log('USER SIGNED ERROR',error)
+         }
+             
+         try {
+            var res = await axios.get(`${this.url3}/${this.state.user_signed._id}/author`);
+            this.setState({loading: false, allPosted: res.data});
+         } catch (error) {
+            this.setState({loading: false});
+            console.log('USER SIGNED ERROR',error)
+         }
+   
+            
     }
 
 
@@ -91,30 +81,24 @@ export default class ProfileFriend extends Component{
         this.setState({isShowOverlay: !this.state.isShowOverlay})
     }
 
-    componentDidUpdate(prevProps) {
+    async componentDidUpdate(prevProps) {
         const info = JSON.parse( localStorage.getItem('info') );
         if (this.props.location.pathname !== prevProps.location.pathname) {
-            axios.get(this.url2+"/name/"+this.props.match.params.user_id_friend, axios.defaults.headers.common['Authorization'] = info.accessToken)    
-            .then(res => {
-                console.log('ProfileFriend: ',this.props.match.params.user_id_friend )
-                this.setState({loading: false, user_signed: res.data});
-
-                    axios.get(this.url3)
-                    .then(res => {
-                        const postedOfAuthor = res.data.filter(post=> post.authorID == this.state.user_signed._id)
-                        this.setState({loading: false, posted: res.data, postedOfAuthor});
-                    })
-                    .catch(error => {
-                        this.setState({loading: false});
-                        console.log('USER SIGNED ERROR',error)
-                    })
-            })
-            .catch(error => {
-                this.setState({loading: false});
-                console.log('USER SIGNED ERROR',error)
-            })
-
-            
+            try {
+                var res = await axios.get(this.url2+"/name/"+this.props.match.params.user_id_friend, axios.defaults.headers.common['Authorization'] = info.accessToken);
+               await this.setState({loading: false, user_signed: res.data});
+            } catch (error) {
+               this.setState({loading: false});
+               console.log('USER SIGNED ERROR',error)
+            }
+                
+            try {
+               var res = await axios.get(`${this.url3}/${this.state.user_signed._id}/author`);
+               this.setState({loading: false, allPosted: res.data});
+            } catch (error) {
+               this.setState({loading: false});
+               console.log('USER SIGNED ERROR',error)
+            }
         }
     }
     isEmpty(obj) {
@@ -128,21 +112,22 @@ export default class ProfileFriend extends Component{
     render(){
         const {match} = this.props;
         const info = JSON.parse( localStorage.getItem('info') );
+        console.log('111',this.state.user_signed._id);
         if(!info){
             return <Redirect to="/" />
         }
        
-        console.log('postedOfAuthorpostedOfAuthorpostedOfAuthor',this.state.postedOfAuthor);
+        console.log('222',this.state.allPosted);
         if(!this.isEmpty(this.state.user_signed))
         {
-            if(this.state.postedOfAuthor.length){
+            if(this.state.allPosted.length){
                 var postClone = [];
                 var position = 0;
                 if(this.props.match.params.id)
                     position = this.props.match.params.id - 1
-                postClone.push( this.state.user_signed.post[position] );
+                postClone.push( this.state.allPosted[position] );
 
-                var imgPosted = this.state.postedOfAuthor.map((p,i) =>
+                var imgPosted = this.state.allPosted.map((p,i) =>
                     <div  className="article">
                         <Link to={`/p/${p._id}`}>
                                 <img src = {p.imgPostUrl} />
@@ -172,7 +157,7 @@ export default class ProfileFriend extends Component{
                                 <div className="user_name">
                                 {this.state.user_signed.email}
                                 </div>
-                                <span className="amount_post">{this.state.postedOfAuthor.length}</span> posts
+                                <span className="amount_post">{this.state.allPosted.length}</span> posts
                                 <div className="full_name">
                                     {this.state.user_signed.name}
                                 </div>    

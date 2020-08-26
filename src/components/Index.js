@@ -77,27 +77,25 @@ export default class Index extends Component{
         // let background = this.props.location.state && this.props.location.state.background;
         if(info){  
           return(
-            <Router>
-
             <div className="Home">
-                      <Menu></Menu>
+              <Menu></Menu>
                       <div className="signined">  
-                
+        
                         <Switch>
                             <Route exact path="/" component={this.DefaultPage} />
                             <Route exact path="/:user_id/"  render={(props) => (<Profile {...props} />)}/>     
                             <Route path="/p/:id/"  component={DetailPost}/>
                         </Switch>
+                  
                       </div>
                       {/* {1 && <Route path="/p/:id/"  component={DetailPost}/>} */}
                       <Footer></Footer>
             </div> 
-            </Router>
             )
           }
     
           return (
-        <Router>
+ 
          <Switch>
           <Route exact path="/accounts/emailsignup" >
               <Sign_up/>
@@ -153,7 +151,7 @@ export default class Index extends Component{
             </Route>
               <Route component={NotFound} />
             </Switch>
-          </Router>
+   
           );
         }
       }
