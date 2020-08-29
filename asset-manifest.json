@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/clone-instagram/static/css/main.d1447183.chunk.css",
-    "main.js": "/clone-instagram/static/js/main.de12d925.chunk.js",
-    "main.js.map": "/clone-instagram/static/js/main.de12d925.chunk.js.map",
+    "main.css": "/clone-instagram/static/css/main.8031440b.chunk.css",
+    "main.js": "/clone-instagram/static/js/main.cd87778b.chunk.js",
+    "main.js.map": "/clone-instagram/static/js/main.cd87778b.chunk.js.map",
     "runtime-main.js": "/clone-instagram/static/js/runtime-main.2eac7397.js",
     "runtime-main.js.map": "/clone-instagram/static/js/runtime-main.2eac7397.js.map",
-    "static/js/2.7bccea98.chunk.js": "/clone-instagram/static/js/2.7bccea98.chunk.js",
-    "static/js/2.7bccea98.chunk.js.map": "/clone-instagram/static/js/2.7bccea98.chunk.js.map",
+    "static/js/2.35423d55.chunk.js": "/clone-instagram/static/js/2.35423d55.chunk.js",
+    "static/js/2.35423d55.chunk.js.map": "/clone-instagram/static/js/2.35423d55.chunk.js.map",
     "index.html": "/clone-instagram/index.html",
-    "precache-manifest.ddaa9eb3a4239b53a5876c031e852612.js": "/clone-instagram/precache-manifest.ddaa9eb3a4239b53a5876c031e852612.js",
+    "precache-manifest.34a3949c8f0f13da750f6918e8dc17c7.js": "/clone-instagram/precache-manifest.34a3949c8f0f13da750f6918e8dc17c7.js",
     "service-worker.js": "/clone-instagram/service-worker.js",
-    "static/css/main.d1447183.chunk.css.map": "/clone-instagram/static/css/main.d1447183.chunk.css.map",
-    "static/js/2.7bccea98.chunk.js.LICENSE.txt": "/clone-instagram/static/js/2.7bccea98.chunk.js.LICENSE.txt",
+    "static/css/main.8031440b.chunk.css.map": "/clone-instagram/static/css/main.8031440b.chunk.css.map",
+    "static/js/2.35423d55.chunk.js.LICENSE.txt": "/clone-instagram/static/js/2.35423d55.chunk.js.LICENSE.txt",
     "static/media/chplay.png": "/clone-instagram/static/media/chplay.f06b9089.png",
     "static/media/close.svg": "/clone-instagram/static/media/close.692d5ec6.svg",
     "static/media/comment.svg": "/clone-instagram/static/media/comment.a971e307.svg",
@@ -34,8 +34,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.2eac7397.js",
-    "static/js/2.7bccea98.chunk.js",
-    "static/css/main.d1447183.chunk.css",
-    "static/js/main.de12d925.chunk.js"
+    "static/js/2.35423d55.chunk.js",
+    "static/css/main.8031440b.chunk.css",
+    "static/js/main.cd87778b.chunk.js"
   ]
 }
