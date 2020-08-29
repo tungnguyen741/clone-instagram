@@ -1,8 +1,6 @@
-body{
-    background-color: #fafafa;
-}
-.DefaultPage {
-  background: #fff;
+
+body {
+  background:#fafafa;
 }
 .container {
   /* width: 52.5%; */
@@ -168,5 +166,5 @@ button.forgot-pass:focus {
   outline: none;
 }
 .signined {
-  margin-top: 100px;
+  padding-top: 65px;
 }

@@ -33,7 +33,7 @@ export default class Like extends Component {
         .catch(err => console.log(err.message));
     }
     render(){
-       console.log(this.props.amountLike);
+       
         return(
             <div className="Like">
                 <button className={ this.props.liked ?  "like" : "dislike" } onClick={this.props.liked ? this.handleUnlikePost : this.handleLikePost} ><img src={ this.props.liked ? heart : heartBlack} alt=""/></button>

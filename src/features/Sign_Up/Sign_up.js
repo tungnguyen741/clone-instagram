@@ -7,7 +7,7 @@ import logo_fb_blue from '../../image/facebook-blue.svg'
 import logo_insta from '../../image/instagram-new-logo.png'
 import axios from 'axios'
 import Loading from '../Loading/Loading'
-
+import loadingIcon from '../../image/loading2.svg'
 export default class Sign_up extends Component{
     constructor(){
         super();
@@ -40,6 +40,7 @@ export default class Sign_up extends Component{
             })
             .catch(err=>{
                 this.setState({loading: false, successful: false, err: err.response.data});
+               // this.setState({loading: false, successful: false });
             })
     }
 
@@ -70,7 +71,7 @@ export default class Sign_up extends Component{
                                         <input onChange={this.handleCheckValue} className="input_sign_up input_login" name="name" type="text" placeholder="Full Name"/>
                                         <input onChange={this.handleCheckValue} className="input_sign_up input_login" disabled="disabled" name="email" type="text" placeholder="Username"/>
                                         <input onChange={this.handleCheckValue} className="input_sign_up input_login" name="password" type="password" placeholder="Password"/>
-                                        {this.state.loading && <Loading/>}
+                                        {this.state.loading && <Loading loadingIcon={loadingIcon} />}
                                         {this.state.successful===true && <div>Bạn đã đăng ký thành công</div>}
                                         {!this.state.successful && this.state.err}
                                         <button className="btn-login btn-signup"  >Sign up</button>

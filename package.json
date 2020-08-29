@@ -12,6 +12,8 @@
     "cloudinary-core": "^2.11.1",
     "cloudinary-react": "^1.6.6",
     "dotenv": "^8.2.0",
+    "gh-pages": "^3.1.0",
+    "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",

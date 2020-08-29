@@ -9,7 +9,6 @@ import Loading from '../Loading/Loading'
 import Comment from '../Comment/Comment'
 import ProfileFriend from '../ProfileFriend/ProfileFriend'
 import Menu from '../Menu/Menu'
-import DetailPost from '../DetailPost/DetailPost' 
  
 export default class Profile extends Component{
     constructor(){
@@ -61,10 +60,11 @@ export default class Profile extends Component{
    
                    
     render(){
+         
         const {match} = this.props;
         const info = JSON.parse( localStorage.getItem('info') );
           // let background = this.props.location.state && this.props.location.state.background;
-        console.log(this.props.location);
+       
         if(!info){
             return <Redirect to="/" />
         }
@@ -99,7 +99,6 @@ export default class Profile extends Component{
 
         if(this.props.match.params.user_id){
             if(this.props.match.params.user_id !=  info.user.email){
-                console.log("MATCH URL !== INFO USER MAIL");
                 return  <Route exact path="/:user_id_friend/" component= {ProfileFriend}  />
             }
         }

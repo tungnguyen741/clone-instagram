@@ -1,10 +1,6 @@
 import React from 'react'
 import { Component } from 'react';
 import classNames from 'classnames';
-import Sign_in from '../features/Sign_In/Sign_in';
-import Sign_up from '../features/Sign_Up/Sign_up';
-import NotFound from './NotFound';
-import Not_account from './Not_account'
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,6 +10,21 @@ import {
   useLocation
 } from "react-router-dom";
 import './Index.css'
+import moment from 'moment'
+
+import Sign_in from '../features/Sign_In/Sign_in';
+import Sign_up from '../features/Sign_Up/Sign_up';
+import NotFound from './NotFound';
+import Not_account from './Not_account'
+import Get_app from './Get_app';
+import Footer from './Footer';
+import ProfileFriend from '../features/ProfileFriend/ProfileFriend'
+import Profile from '../features/Profile/Profile'
+import Menu from '../features/Menu/Menu'
+import TimeLine from '../features/TimeLine/TimeLine'
+import DetailPost from '../features/DetailPost/DetailPost'
+import Post_img from '../features/Post_img/Post_img'
+
 import img_phone from '../image/img_slide_index1.png'
 import img_1 from '../image/img_slide_index.jpg'
 import img_2 from '../image/img_slide_index2.jpg'
@@ -21,16 +32,8 @@ import img_3 from '../image/img_slide_index4.jpg'
 import img_4 from '../image/img_slide_index5.jpg'
 import img_5 from '../image/img_slide_index6.jpg'
 import logo_insta from '../image/instagram-new-logo.png'
-import Get_app from './Get_app';
-import Footer from './Footer';
-import ProfileFriend from '../features/ProfileFriend/ProfileFriend'
-import Profile from '../features/Profile/Profile'
-import Menu from '../features/Menu/Menu'
-import DetailPost from '../features/DetailPost/DetailPost'
-import Post_img from '../features/Post_img/Post_img'
-
 export default class Index extends Component{
-    constructor(){
+  constructor(){
         super();
         this.state={
           slideImg: 1,
@@ -41,22 +44,22 @@ export default class Index extends Component{
           this.changeImg(this.state.img);
         }, 3500);
         this.changeImg = this.changeImg.bind(this);
-         
+        
       } 
       
       changeImg(img){
-          if(img === img_1)
-            this.setState({img: img_2, slideImg: 2})
-          if(img === img_2)
-            this.setState({img: img_3,  slideImg: 3})
-          if(img === img_3)
-            this.setState({img: img_4,  slideImg: 4})
-          if(img === img_4)
-            this.setState({img: img_5,  slideImg: 5})
-          if(img === img_5)
-            this.setState({img: img_1,  slideImg: 1})
+        if(img === img_1)
+        this.setState({img: img_2, slideImg: 2})
+        if(img === img_2)
+        this.setState({img: img_3,  slideImg: 3})
+        if(img === img_3)
+        this.setState({img: img_4,  slideImg: 4})
+        if(img === img_4)
+        this.setState({img: img_5,  slideImg: 5})
+        if(img === img_5)
+        this.setState({img: img_1,  slideImg: 1})
       }
-
+      
       
   
       DefaultPage = ()=>{
@@ -65,6 +68,11 @@ export default class Index extends Component{
         if(info){
           return (
             <div className="DefaultPage">
+              
+              {/* <p>{moment("Thu Jun 20 2020 16:00:41 GMT+0700 (Indochina Time)").format("MMMM DD, YYYY")}</p> 
+              <p>{moment(moment("Thu Jun 20 2020 16:00:41 GMT+0700 (Indochina Time)").format("MMMM DD, YYYY")).fromNow()}</p> */}
+              <TimeLine />
+              
               <Post_img/>
             </div>
           )
@@ -74,33 +82,28 @@ export default class Index extends Component{
       }
       
       render(){
-       
         const info = JSON.parse( localStorage.getItem('info') );
-        console.log(this.props.location);
+       
         if(info){  
           return(
             <div className="Home">
               <Menu/>
+                  
                       <div className="signined">  
-                        <Switch  >
+                        <Switch>
                             <Route exact path="/" component={this.DefaultPage} />
-                            <Route exact path="/:user_id/" component={Profile}/>     
-                            {/* <Route location={"" || this.props.location} exact path="/:user_id/" 
-                             render={(props) => <Profile {...props}/>}/> 
-                             />      */}
-                            <Route  exact path="/p/:id/"  render={(props) => <DetailPost {...props}/>} /> 
+                            <Route exact path="/:user_id/" render={ (props) => <Profile {...props}/> } /> 
+                            <Route path="/p/:id/"  render={ (props) => <DetailPost  {...props}/> } /> 
                         </Switch>
-                        {/* {"" &&  <Route path="p/:id/"  render={(props) => <DetailPost {...props}/>} /> } */}
                       </div>
-                      {/* {1 && <Route path="/p/:id/"  component={DetailPost}/>} */}
                       <Footer></Footer>
             </div> 
             )
           }
-    
+          
           return (
- 
-         <Switch>
+            <Switch>
+            
           <Route exact path="/accounts/emailsignup" >
               <Sign_up/>
           </Route>
@@ -159,3 +162,4 @@ export default class Index extends Component{
           );
         }
       }
+ 

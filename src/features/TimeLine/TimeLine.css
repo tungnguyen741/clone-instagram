@@ -1,0 +1,31 @@
+.TimeLine{
+    padding-top: 20px
+}
+.post_detailTL {
+    width: 35%;
+    justify-content: center;
+    margin: 0 auto;
+    border: 1px solid #efefef;
+    background-color: #fff;
+    margin-bottom: 55px;
+}
+ 
+.Img_postedTL img {
+    width: 100%;
+}
+ 
+
+.wrapper_comment {
+    overflow: overlay;
+}
+.date_postTL {
+    padding: 10px 0 10px 17px;
+    text-transform: uppercase;
+    font-size: 10px;
+    color: #888;
+    position: static;
+    bottom: 64px;
+}
+.info_detailTL .Comment{
+    position: static;
+}

@@ -60,11 +60,7 @@ export default class ProfileFriend extends Component{
     handleShowLike(){
         this.setState({isShowUsersLike: !this.state.isShowUsersLike});
     }
-    handleLogout(){
-        localStorage.removeItem("info");
-    }
      
-
     isShowOverlay(){
         this.setState({isShowOverlay: !this.state.isShowOverlay})
     }
@@ -160,7 +156,6 @@ export default class ProfileFriend extends Component{
                         </div>
                     </div>
                    
-                    <button onClick={this.handleLogout}>Logout</button>
                     {this.props.match.params.id &&  DetailPost}
                     </div>
                
