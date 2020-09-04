@@ -66,15 +66,30 @@ export default class TimeLine extends Component{
         
     }
 
+    componentDidUpdate(props, a , b, c){
+        console.log('did update time line: ', '\n\naaaa', a);
+        // const info = JSON.parse(localStorage.getItem("info"));
+        // axios.get(`${process.env.REACT_APP_URL_POST}/timeLine/date`)
+        // .then(res => {
+        //     this.setState((prevState) => ({
+        //         dataTimeLine: res.data ,
+        //         Liked: res.data.map(item => item.likes.find(like => like._id===info.user._id) ).map(item => item ? true : false ),
+        //         amountLike: res.data.map(item => item.likes.length )
+        //     }))
+        //     })
+        //     .catch(err => console.log(err));
+    }
 
 
     render(){
-        const info = JSON.parse( localStorage.getItem("info"));
-        console.log(this.state.Liked[1], '\n',this.state.amountLike, '\n', this.state.dataTimeLine)
+        const {info}= this.props;
+        // console.log(this.state.Liked[1], '\n',this.state.amountLike, '\n', this.state.dataTimeLine)
         return(
             <div className="TimeLine">
                  {this.state.dataTimeLine.map((item, index )=> <div>
-                    <Render_DetailPost_TimeLine postDetail={item} 
+                    <Render_DetailPost_TimeLine
+                                        info={info} 
+                                        postDetail={item} 
                                         userCommented={item.comments} 
                                         isLiked={ this.state.Liked[index] }
                                         amountLike={item.likes.length} 

@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom'
 import axios from 'axios';
 import Footer from '../../components/Footer'
 import Loading from '../Loading/Loading'
-import ProfileFriend from '../ProfileFriend/ProfileFriend'
+ 
 import Menu from '../Menu/Menu'
 
 import RenderPostDetail from "../Render/Render_DetailPost_Profile"

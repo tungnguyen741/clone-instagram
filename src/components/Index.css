@@ -2,21 +2,17 @@
 body {
   background:#fafafa;
 }
-.container {
-  /* width: 52.5%; */
-  width: 840px;
-  margin: 0 auto;
-}
+
 .wrapper_content {
-  display: flex;
+ text-align: center;
   padding-top: 30px;
 }
 .phone_slide {
-  /* width: 71%; */
-  width: 497px;
+  flex-basis: 50%;
   margin: 0 auto;
   position: relative;
   height: 617px;
+  display: inline-block;
 }
  
 .phone_slide img {
@@ -61,15 +57,16 @@ img.show {
   width: 240.1px;
   position: absolute;
   top: 98.4px;
-  left: 150.5px;
+  left: 30.5px;
   height: 428px;
 }
 /* width: 60%; */
 .wrapper_login {
   margin-top: 33px;
-  width: 505px;
   position: relative;
   margin-left: -14px;
+  display: inline-block;
+  flex-basis: 50%;
 }
 .login {
   border: 1px solid #ddd;

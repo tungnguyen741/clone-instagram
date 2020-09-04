@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import './Menu.css'
 import classNames from 'classnames'
-import logo_insta from '../../image/instagram-new-logo.svg'
 import {
     Link, Redirect, Route, BrowserRouter as Router
-  } from "react-router-dom";
+} from "react-router-dom";
 import Profile from '../Profile/Profile'
 import Loading from '../Loading/Loading'
-
+import logo_insta from '../../image/instagram-new-logo.svg'
+import profileIcon from '../../image/profile.svg'
 export default class Menu extends Component{
     constructor(){
         super();
@@ -58,7 +58,7 @@ export default class Menu extends Component{
 
         this.setState({isShowSearch: '', loading: false});
         if(e.target.value){
-            this.setState({isShowSearch: 'hidden'})
+            this.setState({isShowSearch: 'hidden'   })
         }
     }
 
@@ -77,8 +77,8 @@ export default class Menu extends Component{
     }
     render(){
         // console.log('users_searched: ',this.state.users_searched);
-    
-        const info = JSON.parse( localStorage.getItem('info') );
+        
+        const {info} = this.props;
         if(this.state.users_searched){
             const users_searched = [].concat(this.state.users_searched).map(user => <div className="users_searched">
                 {user.name}
@@ -105,9 +105,10 @@ export default class Menu extends Component{
                         <div onClick={this.showToolBar} className="tool_bar">
                             <div className={classNames('ToolBar', {'showToolBar':this.state.isShowToolBar})}>
                                 <Link className="menu_tool_profile" to={`/${info.user.email}`}>
-                                    Profile
+                                    <img src={profileIcon} alt="icon profile"/>
+                                    Profile 
                                 </Link>
-                                <button className="menu_tool_logout" onClick={this.handleLogout}>Logout</button>
+                                <button className="menu_tool_logout" onClick={this.handleLogout}>Log Out</button>
                         </div>
                             <img onClick={this.showToolBar} src={info.user.avatarUrl} alt=""/>
                         </div>
@@ -116,7 +117,7 @@ export default class Menu extends Component{
                         
                         
                         <div className={classNames('users_finded', {"hidden":  this.state.isOnFocus})} >
-                        {
+                        { 
                           (this.state.users_searched).map(user => <div className="users_searched">
                                 <Link to={`/${user.email}`} >
                                     <div className="user_avatar">

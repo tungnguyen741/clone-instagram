@@ -18,13 +18,14 @@ import NotFound from './NotFound';
 import Not_account from './Not_account'
 import Get_app from './Get_app';
 import Footer from './Footer';
-import ProfileFriend from '../features/ProfileFriend/ProfileFriend'
 import Profile from '../features/Profile/Profile'
 import Menu from '../features/Menu/Menu'
 import TimeLine from '../features/TimeLine/TimeLine'
 import DetailPost from '../features/DetailPost/DetailPost'
-import Post_img from '../features/Post_img/Post_img'
 
+import DefaultPage from './DefaultPage'
+
+import "./responsive.css"
 import img_phone from '../image/img_slide_index1.png'
 import img_1 from '../image/img_slide_index.jpg'
 import img_2 from '../image/img_slide_index2.jpg'
@@ -32,13 +33,15 @@ import img_3 from '../image/img_slide_index4.jpg'
 import img_4 from '../image/img_slide_index5.jpg'
 import img_5 from '../image/img_slide_index6.jpg'
 import logo_insta from '../image/instagram-new-logo.png'
+
 export default class Index extends Component{
   constructor(){
         super();
         this.state={
           slideImg: 1,
           img: img_1,
-          isRedirect: false
+          isRedirect: false,
+          info: JSON.parse( localStorage.getItem('info') )
         }
         setInterval(()=>{
           this.changeImg(this.state.img);
@@ -60,40 +63,28 @@ export default class Index extends Component{
         this.setState({img: img_1,  slideImg: 1})
       }
       
-      
-  
-      DefaultPage = ()=>{
+      changeAvatar = (res) => {
+        // const {info}= this.state;
         const info = JSON.parse( localStorage.getItem('info') );
-        
-        if(info){
-          return (
-            <div className="DefaultPage">
-              
-              {/* <p>{moment("Thu Jun 20 2020 16:00:41 GMT+0700 (Indochina Time)").format("MMMM DD, YYYY")}</p> 
-              <p>{moment(moment("Thu Jun 20 2020 16:00:41 GMT+0700 (Indochina Time)").format("MMMM DD, YYYY")).fromNow()}</p> */}
-              <TimeLine />
-              
-              <Post_img/>
-            </div>
-          )
-        }
-        return <Redirect to="/" />
-        
+        this.setState({info : {...info, user: {...info.user, avatarUrl: res } }})
       }
       
-      render(){
-        const info = JSON.parse( localStorage.getItem('info') );
+      
+        
+        render(){
+          // const {info}= this.state;
+          const info = JSON.parse( localStorage.getItem('info') );
        
         if(info){  
           return(
             <div className="Home">
-              <Menu/>
+              <Menu info={info} />
                   
                       <div className="signined">  
                         <Switch>
-                            <Route exact path="/" component={this.DefaultPage} />
-                            <Route exact path="/:user_id/" render={ (props) => <Profile {...props}/> } /> 
-                            <Route path="/p/:id/"  render={ (props) => <DetailPost  {...props}/> } /> 
+                            <Route exact path="/" render={ (props) => <DefaultPage {...props} info={info} /> } />
+                            <Route exact path="/p/:id/"  render={ (props) => <DetailPost  {...props} info={info} /> } /> 
+                            <Route path="/:user_id/" render={ (props) => <Profile {...props}/> }  info={info} /> 
                         </Switch>
                       </div>
                       <Footer></Footer>
@@ -110,7 +101,7 @@ export default class Index extends Component{
         
           <Route exact path="/" >
             <div className="Index">
-              <div className="container">
+              
                   <div className="wrapper_content">
 
                       <div className="phone_slide">
@@ -146,7 +137,7 @@ export default class Index extends Component{
                                 </div>
                               </div>
                             </div>
-                          <Not_account btn_signUp="Sign up">
+                          <Not_account link="/accounts/emailsignup" btn_signUp="Sign up">
                             Don't have an account?
                           </Not_account>
                           <Get_app/>
@@ -154,7 +145,7 @@ export default class Index extends Component{
                   </div>
               </div> 
             <Footer/>
-            </div>
+            
             </Route>
               <Route component={NotFound} />
             </Switch>

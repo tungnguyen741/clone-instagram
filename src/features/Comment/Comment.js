@@ -33,10 +33,10 @@ export default class Comment extends Component{
         this.props.handleComment({
             "userCommented": {
                 avatarUrl : info.user.avatarUrl,
-                name: info.user.name,
-                dateComment: Date.now()
+                name: info.user.name
             },
-            "textCommented": this.state.textCommented
+            "textCommented": this.state.textCommented,
+            dateComment: Date.now()
         });
 
     }

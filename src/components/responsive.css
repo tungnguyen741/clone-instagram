@@ -1,0 +1,16 @@
+@media screen and (max-width: 768px){
+    .phone_slide{
+        display: none
+    }
+    .have-account, .login, .app-download, .img_app{
+        width: 100%;
+    }
+    .wrapper_login{
+        width: 100%;
+        margin-top: 0;
+        margin-left: 0;
+    }
+    .wrapper_content{
+        padding-top: 0;
+    }
+}

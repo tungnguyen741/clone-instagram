@@ -6,7 +6,8 @@
     width: 100%;
     position: fixed;
     border: 1px solid #dbdbdb;
-    top:0
+    top:0;
+    z-index: 2;
 }
 .wrapper_menu {
  
@@ -24,6 +25,9 @@
     height: 100%;
     display: flex;
     align-items: center;
+}
+.Home_Page a:active{
+    opacity: .5;
 }
 .search_user {
     flex-basis: 31%;
@@ -55,17 +59,20 @@
 .ToolBar {
     opacity: 0;
     visibility: hidden;
-    transition: 0.2s all;
+    transition: 0.1s all;
     position: absolute;
     top: 22px;
     display: flex;
     flex-direction: column;
+    width: 200px;
+    box-shadow: -1px -1px 9px 0px #e1e0e0;
+    border-radius: 5px;
 }
  
 .showToolBar {
     opacity: 1;
     visibility: visible;
-    transition: 0.3s all;
+    transition: 0.2s all;
     top: 46px;
     position: absolute;
     display: flex;
@@ -133,3 +140,53 @@
 .hidden{
     display: none
 }
+ 
+.ToolBar a {
+    padding: 5px 10px 5px 10px;
+    background: #fff;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+.ToolBar button {
+    padding: 15px 10px 15px 10px;
+    border: 0;
+    border-top: 1px solid #dedede;
+    text-align: left;
+    cursor: pointer;
+    background: #fff;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.ToolBar {
+    position: relative;
+    z-index: 1;
+    right: -49px;
+    top: 77px;
+}
+.ToolBar.showToolBar::before {
+    content: "";
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    right: 23px;
+    top: -8px;
+    transform: rotate(224deg);
+    border: 1px solid #ddd;
+    box-shadow: -1px -1px 9px 0px #e1e0e0;
+    z-index: -1;
+    background: #fff;
+}
+a.menu_tool_profile{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+a.menu_tool_profile img {
+    border: 0;
+    padding-right: 10px;
+    width: 17px;
+}
+.ToolBar.showToolBar  button:hover, .ToolBar a:hover{
+    background: #fafafa;
+}
+ 

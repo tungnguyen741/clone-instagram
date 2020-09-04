@@ -8,7 +8,7 @@ export default class Not_account extends Component{
         return(
             <div className="have-account">
                 <span>{this.props.children}</span>
-                <Link to="/accounts/emailsignup" className="btn-sign-up">{this.props.btn_signUp}</Link>
+                <Link to={this.props.link} className="btn-sign-up">{this.props.btn_signUp}</Link>
             </div>
         );
     }

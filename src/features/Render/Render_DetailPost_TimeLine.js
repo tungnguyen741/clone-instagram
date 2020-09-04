@@ -44,12 +44,14 @@ export default class Render_DetailPost_TimeLine extends Component {
             <div className="post">
             {/* {console.log(post.authorID)} */}
                     <div key={i} className="post_detailTL">
-                        <div className="author">
+                        <Link to={post.authorID.email} className="author">
                             <img src={post.authorID.avatarUrl} alt=""/>
                             <span className="author_name">{post.authorID.email}</span>
-                        </div>
+                        </Link>
                         <div className="Img_postedTL">
+                           <Link to={`/p/${post._id}`}>
                             <img src={post.imgPostUrl} alt=""/>
+                           </Link>
                         </div>
                             <div className="btn_emoji">
                              {/*======== ISLIKED BY ME ========*/}
@@ -60,7 +62,7 @@ export default class Render_DetailPost_TimeLine extends Component {
                             </div>
                         <div className="info_detailTL">
                             <div className="author">
-                                <span className="author_name">{post.authorID.email}</span>
+                                <Link to={post.authorID.email} className="author_name">{post.authorID.email}</Link>
                                 {post.description}
                             </div>
                             {/* ==========================User COMMENTS ========================== */}
@@ -101,7 +103,8 @@ export default class Render_DetailPost_TimeLine extends Component {
                           
                         {/* DATE POST */}
                         <div className="date_postTL">
-                            {moment(moment(post.datePost).format("MMMM DD, YYYY")).fromNow()}
+                           
+                            {moment(post.datePost).fromNow()}
                         </div>
                         <Comment data={this.props.match} handleComment={this.props.handleComment} isFocusCmt={this.state.isFocusCmt} />
                         </div>

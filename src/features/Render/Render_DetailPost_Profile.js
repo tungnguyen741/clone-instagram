@@ -154,7 +154,7 @@ export default class Render_DetailPost_Profile extends Component {
                            </div>
                         {/* DATE POST */}
                         <div className="date_post">
-                            {moment(post.datePost).format("MMMM DD, YYYY")}
+                            {moment(post.datePost).fromNow()}
                         </div>
                         <Comment data={this.props.match} handleComment={this.props.handleComment} isFocusCmt={this.state.isFocusCmt} />
                         </div>

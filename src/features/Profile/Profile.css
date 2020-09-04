@@ -23,7 +23,7 @@ a{
 
 .info_user {
     display: flex;
- 
+    padding: 50px 0;
 }
 .avatar {
     width: 30%;

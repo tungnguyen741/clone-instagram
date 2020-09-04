@@ -1,3 +1,6 @@
+.Sign_in{
+  position: relative;
+}
 button.btn-login {
     display: block;
     width: 100%;
@@ -26,8 +29,8 @@ input.input_login.input_login_pass {
 }
 a.show_pass {
   position: absolute;
-  right: 171px;
-  top: 177px;
+  right: 14px;
+  top: 55px;
   font-weight: bold;
   text-decoration: none;
   color: #000;
@@ -35,8 +38,8 @@ a.show_pass {
 }
 .input_user_holder {
   position: absolute;
-  left: 50px;
-  top: 133px;
+  left: 14px;
+  top: 11px;
   font-size: 13px;
   color: #757575;
   letter-spacing: -.3px;
@@ -46,8 +49,8 @@ a.show_pass {
 }
 .input_pass_holder {
   position: absolute;
-  left: 50px;
-  top: 179px;
+  left: 14px;
+  top: 58px;
   font-size: 13px;
   color: #757575;
   pointer-events: none;
@@ -56,8 +59,8 @@ a.show_pass {
 }
 span.user_holder_change {
   position: absolute;
-  left: 31px;
-  top: 122px;
+  left: -6px;
+  top: 0;
   /* font-size: 11px; */
   color: #757575;
   letter-spacing: -.3px;
@@ -68,9 +71,8 @@ span.user_holder_change {
 }
 span.pass_holder_change {
   position: absolute;
-  left: 42px;
-  top: 167px;
- 
+  left: 6px;
+  top: 46px;
   color: #757575;
   opacity: 1;
   visibility: visible;

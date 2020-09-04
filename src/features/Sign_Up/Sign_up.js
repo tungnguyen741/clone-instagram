@@ -48,7 +48,6 @@ export default class Sign_up extends Component{
         return(
             <div className="Sign_up">
                 <div className="wrapper_sign_up">
-                    <div className="container">
                         <div className="content_sign_up ">
                             <div className="login">
                                 <div className="sign-up-form">
@@ -80,7 +79,7 @@ export default class Sign_up extends Component{
                             </div>
                         </div>
                             <div className="sign_up_not_account">
-                                <Not_account btn_signUp="Log in">
+                                <Not_account link="/" btn_signUp="Log in">
                                     Have an account?
                                 </Not_account>
                             </div>
@@ -88,7 +87,7 @@ export default class Sign_up extends Component{
                                 <Get_app/>
                             </div>
                     </div>
-                </div>
+                
                 <Footer/>
             </div>);
     }

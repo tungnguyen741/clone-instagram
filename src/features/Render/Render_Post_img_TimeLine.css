@@ -1,0 +1,139 @@
+img.loading {
+    width: 25px;
+    height: 25px;
+}
+
+.Post_img {
+    width: 35%;
+    margin: 30px auto;
+    border: 1px solid #efefef;
+    background: #fff;
+}
+.btn_post {
+    padding-bottom: 13px;
+}
+.btn_post button {
+    border: 0;
+    background: #1c91f5;
+    color: #fff;
+    width: 97%;
+    cursor: pointer;
+    padding: 9px 0;
+    font-weight: bold;
+    transition: 0.2s all;
+}
+.btn_post button:hover, .btn_post button:focus, .btn_post button:active{
+    background-color: #0172d2;
+}
+.description {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #efefef;
+}
+.description img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding: 0 10px;
+}
+
+.description .input_text_description {
+    width: 100%;
+    padding: 25px 25px 25px 5px;
+    font-size: 20px;
+    border:none;
+}
+.description .input_text_description:focus{
+    outline: none;
+}
+.description .input_text_description::placeholder{
+    background-color: transparent;
+    color: #90949c;
+}
+.fontScale{
+    font-size: 30px !important;
+}
+.fontScale::placeholder{
+    opacity: .6;
+}
+.btn_post{
+    text-align: center;
+}
+input#imgPostUrl {
+    display: none
+}
+.custom-file-upload {
+    padding: 8px 20px;
+  
+    background: #f5f6f7;
+    width: 10%;
+    text-align: center;
+    border-radius: 40px;
+    cursor: pointer;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+label.custom-file-upload img {
+    width: 22px;
+    padding-right: 5px;
+}
+.fail_post{
+    color: #ff7272;
+    font-weight: 500;
+    font-size: 25px;
+    text-align: center
+}
+.fail_post img {
+    width: 4%;
+}
+.fileSelected{
+    padding: 10px 10px 10px 25px;
+}
+.fileSelected {
+    padding: 10px 10px 10px 25px;
+}
+.file_uploaded img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.file_uploaded{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    transition: 0.2s all;
+}
+label.custom-file-upload:hover {
+    background: #ebecec;
+}
+img.closeImg {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: none;
+    z-index: 2;
+}
+.file_uploaded:hover{
+    background: #ccc;
+}
+.file_uploaded:hover img.closeImg{
+    display: block;
+}
+.overlay_TL{
+    display: none;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    background: rgba(0,0,0,.5);
+}
+.file_uploaded:hover .overlay_TL{
+    display: block;
+}

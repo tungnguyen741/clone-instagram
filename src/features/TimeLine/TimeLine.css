@@ -9,7 +9,9 @@
     background-color: #fff;
     margin-bottom: 55px;
 }
- 
+a.author{
+    display: inline-flex;
+}
 .Img_postedTL img {
     width: 100%;
 }

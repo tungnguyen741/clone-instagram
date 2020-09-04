@@ -5,9 +5,10 @@ import { Redirect, Link,  BrowserRouter as Router, Route } from 'react-router-do
 import axios from 'axios';
 import Footer from '../../components/Footer'
 import closeIcon from '../../image/close.svg'
+import cameraIcon from '../../image/photography.png'
 import Loading from '../Loading/Loading'
 import Comment from '../Comment/Comment'
-import ProfileFriend from '../ProfileFriend/ProfileFriend'
+import Render_Post_img_Avatar from '../Render/Render_Post_img_Avatar'
 import Menu from '../Menu/Menu'
  
 export default class Profile extends Component{
@@ -22,11 +23,12 @@ export default class Profile extends Component{
             user_signed: {},
             allPosted:[],
             isShowDetail: true,
-            postedOfAuthor:[]
+            postedOfAuthor:[],
+            isShowPostAvatar: false
         }
  
     }
-    componentDidMount(){
+   componentDidMount(){
         const info = JSON.parse( localStorage.getItem('info') );
         //Get User detail by email in url
         axios.get(process.env.REACT_APP_URL_USER+"/name/"+this.props.match.params.user_id, axios.defaults.headers.common['Authorization'] = info.accessToken)    
@@ -39,7 +41,7 @@ export default class Profile extends Component{
             })
 
         //Get All Post filter Post of author
-        axios.get(`${process.env.REACT_APP_URL_POST}/${info.user._id}/author`)
+        axios.get(`${process.env.REACT_APP_URL_POST}/${this.props.match.params.user_id}/author`, axios.defaults.headers.common['Authorization'] = info.accessToken)    
             .then(res => {
                 console.log('allPosted of users PR', res.data)
                 this.setState({loading: false, allPosted: res.data});
@@ -48,7 +50,26 @@ export default class Profile extends Component{
                 this.setState({loading: false});
             })
     }
+    
+      componentDidUpdate( ) {
  
+        const info = JSON.parse( localStorage.getItem('info') );
+        if (this.props.location.pathname !== `/${this.state.user_signed.email}`) {
+            axios.get(process.env.REACT_APP_URL_USER+"/name/"+this.props.match.params.user_id, axios.defaults.headers.common['Authorization'] = info.accessToken)    
+            .then(res => {
+                this.setState({loading: false,user_signed: res.data});
+            })
+            .catch();
+
+        //Get All Post filter Post of author
+        axios.get(`${process.env.REACT_APP_URL_POST}/${this.props.match.params.user_id}/author`, axios.defaults.headers.common['Authorization'] = info.accessToken)    
+            .then(res => {
+                console.log('allPosted of users PR', res.data)
+                this.setState({loading: false, allPosted: res.data});
+            })
+            .catch( );
+        }
+    }
     isEmpty(obj) {
         for(var prop in obj) {
           if(obj.hasOwnProperty(prop)) {
@@ -58,13 +79,20 @@ export default class Profile extends Component{
         return JSON.stringify(obj) === JSON.stringify({});
       }
    
-                   
+    handleShowPostAvatar = () => {
+        this.setState({isShowPostAvatar: !this.state.isShowPostAvatar})
+    }
+
+    handleChangeAvatar = () => {
+        const info = JSON.parse(localStorage.getItem('info'));
+        this.setState({user_signed: {...this.state.user_signed, avatarUrl: info.user.avatarUrl} });
+    }
     render(){
          
+        // const {match, info} = this.props;
         const {match} = this.props;
-        const info = JSON.parse( localStorage.getItem('info') );
-          // let background = this.props.location.state && this.props.location.state.background;
-       
+        const info = JSON.parse(localStorage.getItem('info'));
+
         if(!info){
             return <Redirect to="/" />
         }
@@ -83,7 +111,7 @@ export default class Profile extends Component{
                     <div  className="article">
                         <Link to={{
                             pathname: `/p/${p._id}`,
-                            state: { background: this.props.location }
+                            state: { from: this.props.pathname  }
                         }}>
                                 <img src = {p.imgPostUrl} />
                         </Link>
@@ -93,28 +121,26 @@ export default class Profile extends Component{
                
                    }
                 }
-       // console.log('PROPS MATCH',this.props.match.params.user_id, 'INFO USER: ', info.user.email)
+ 
         if(this.state.loading)
             return (<Loading loadingIcon={loadingIcon} />)
-
-        if(this.props.match.params.user_id){
-            if(this.props.match.params.user_id !=  info.user.email){
-                return  <Route exact path="/:user_id_friend/" component= {ProfileFriend}  />
-            }
-        }
-    //    console.log('LOCATION', this.props);
+ 
       
         return(   
                 <div className="Profile">
                     <div className="container">
                         <div className="info_user">
                             <div className="avatar">
-                                <Link to="/">
+                                <span className="avatar_img">
                                     <img src={this.state.user_signed.avatarUrl} alt=""/>
-                                </Link>
-                                
+                                    <div onClick={this.handleShowPostAvatar} className="showPostImg">
+                                        <img src={cameraIcon} alt=""/>
+                                        <div className="update"> Cập nhật</div>
+                                    </div>
+                                    
+                                </span>
                             </div>
-                      
+                          
                             <div className="info_user_detail">
                                 <div className="user_name">
                                 {this.state.user_signed.email}
@@ -131,13 +157,20 @@ export default class Profile extends Component{
                     
                         {/* nav post */}
                         <div className="wrapper_img_posted">
-                        <hr/>
+      
                             <div className="img_posted">
                                 {imgPosted} 
                             </div>
                         </div>
                     </div>
-                   
+                    {this.state.isShowPostAvatar && 
+                                    <Render_Post_img_Avatar
+                                        info={info}
+                                        inputNameAvatar="avatar"
+                                        urlApi={`${process.env.REACT_APP_URL_USER}/${info.user._id}/avatar`}
+                                        handleChangeAvatar={this.handleChangeAvatar}
+                                        handleShowPostAvatar={this.handleShowPostAvatar}
+                                    />}
                 </div>
           );
         
