@@ -1,27 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "414e99545c3757ff1e2a01192c02d345",
+    "revision": "86ce4b49b553d82bad4dcccc37324a46",
     "url": "/clone-instagram/index.html"
   },
   {
-    "revision": "3c40d0b027c769d2669c",
-    "url": "/clone-instagram/static/css/main.561f4d34.chunk.css"
+    "revision": "0f765892b3774845977c",
+    "url": "/clone-instagram/static/css/main.14252d33.chunk.css"
   },
   {
-    "revision": "50ee545ffdbe6471e7fe",
-    "url": "/clone-instagram/static/js/2.35423d55.chunk.js"
+    "revision": "fb68fd027b77e36d145d",
+    "url": "/clone-instagram/static/js/2.280d4a75.chunk.js"
   },
   {
-    "revision": "88cbcb55f867c7e879dbc5e47becbf3b",
-    "url": "/clone-instagram/static/js/2.35423d55.chunk.js.LICENSE.txt"
+    "revision": "3453b8997016469371284a28c0e873e2",
+    "url": "/clone-instagram/static/js/2.280d4a75.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3c40d0b027c769d2669c",
-    "url": "/clone-instagram/static/js/main.cd87778b.chunk.js"
+    "revision": "0f765892b3774845977c",
+    "url": "/clone-instagram/static/js/main.39a02c86.chunk.js"
   },
   {
     "revision": "e1c5e15e68cd429e6151",
     "url": "/clone-instagram/static/js/runtime-main.2eac7397.js"
+  },
+  {
+    "revision": "4c8db9d8ed3deb4162758c6e792ff68d",
+    "url": "/clone-instagram/static/media/add.4c8db9d8.svg"
+  },
+  {
+    "revision": "184b15534b3a1a389febf7cde782f61e",
+    "url": "/clone-instagram/static/media/alert.184b1553.svg"
   },
   {
     "revision": "f06b908907d5d4f2aaf733e2bee7ea8e",
@@ -92,8 +100,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/clone-instagram/static/media/loading2.89effbc6.svg"
   },
   {
-    "revision": "f51e4fb9dc00c00ec97df33a716a4e30",
-    "url": "/clone-instagram/static/media/loadingCat.f51e4fb9.gif"
+    "revision": "4cd8be795fe605d03b27a8154e93ba88",
+    "url": "/clone-instagram/static/media/loading3.4cd8be79.gif"
+  },
+  {
+    "revision": "759e26f7ed387e15cb46abd10cee784d",
+    "url": "/clone-instagram/static/media/photo.759e26f7.svg"
+  },
+  {
+    "revision": "ba5a365b5150a3aa27b7b7e474beacc5",
+    "url": "/clone-instagram/static/media/photography.ba5a365b.png"
+  },
+  {
+    "revision": "7d927e67d5573fe088f95a333728ab4b",
+    "url": "/clone-instagram/static/media/profile.7d927e67.svg"
   },
   {
     "revision": "7457cb2b0341b07871217ee4fdd3644f",
