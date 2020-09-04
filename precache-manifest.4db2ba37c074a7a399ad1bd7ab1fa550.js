@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "86ce4b49b553d82bad4dcccc37324a46",
+    "revision": "08857aca7e1f4a430f5f6f5533f1ffd9",
     "url": "/clone-instagram/index.html"
   },
   {
-    "revision": "0f765892b3774845977c",
-    "url": "/clone-instagram/static/css/main.14252d33.chunk.css"
+    "revision": "30d2f777e8cc7a4df69e",
+    "url": "/clone-instagram/static/css/main.091c35f6.chunk.css"
   },
   {
-    "revision": "fb68fd027b77e36d145d",
-    "url": "/clone-instagram/static/js/2.280d4a75.chunk.js"
+    "revision": "fa069dff8aef02532e92",
+    "url": "/clone-instagram/static/js/2.969e8862.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/clone-instagram/static/js/2.280d4a75.chunk.js.LICENSE.txt"
+    "url": "/clone-instagram/static/js/2.969e8862.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0f765892b3774845977c",
-    "url": "/clone-instagram/static/js/main.39a02c86.chunk.js"
+    "revision": "30d2f777e8cc7a4df69e",
+    "url": "/clone-instagram/static/js/main.838f9398.chunk.js"
   },
   {
     "revision": "e1c5e15e68cd429e6151",
