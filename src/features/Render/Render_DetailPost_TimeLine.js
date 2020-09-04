@@ -36,6 +36,7 @@ export default class Render_DetailPost_TimeLine extends Component {
       }
     render(){
         const info = JSON.parse(localStorage.getItem("info"));
+        // console.log(this.props.handleLikePost);
         if(!this.isEmpty(this.props.postDetail) ){
             var imgPostDetail = [].concat(this.props.postDetail).map( (post, i)=> <div>
                 <img src={post.imgPostUrl} alt=""/>
@@ -55,7 +56,7 @@ export default class Render_DetailPost_TimeLine extends Component {
                         </div>
                             <div className="btn_emoji">
                              {/*======== ISLIKED BY ME ========*/}
-                             { <Like liked={this.props.isLiked ? true : false} amountLike={this.props.amountLike} handleUpAmountLike={this.props.handleUpAmountLike} handleDownAmountLike={this.props.handleDownAmountLike}  handleLikePost={this.props.handleLikePost} data={this.props.match} />   }
+                             { <Like item={post} liked={this.props.isLiked ? true : false} amountLike={this.props.amountLike} handleUpAmountLike={this.props.handleUpAmountLike} handleDownAmountLike={this.props.handleDownAmountLike}  handleLikePost={this.props.handleLikePost} data={this.props.match} />   }
                                 <button onClick={this.handleFocusCmt} className="btn_comment"> <img src={comment} alt=""/> </button>
                         
                                 <button className="btn_share"> <img src={share} alt=""/> </button>
@@ -65,11 +66,50 @@ export default class Render_DetailPost_TimeLine extends Component {
                                 <Link to={post.authorID.email} className="author_name">{post.authorID.email}</Link>
                                 {post.description}
                             </div>
+
+                            <div className="likes">
+                            {/* {
+                                {/* ========================== User LIKES ==========================  */}
+                                { post.likes.length === 0 ?
+                                ! this.props.isLiked ?  <div className="like_first">
+                                </div>
+                                : <span className="user_other_like" onClick={this.handleShowLike}>1 like</span>
+                                : ""
+                                }
+                    
+                                {/* other User LIKES rest */}
+                                {
+                                    post.likes.length >= 1 &&
+                                    <div className="other_like_list">
+                                        {/* <span className="user_other_like" onClick={this.handleShowLike}>  { this.props.isLiked ? (post.likes.length - 1 ) + " others" :  (post.likes.length-2 === 0 ? "" :post.likes.length-2 + " others")  } </span> */}
+                                        { <span className="user_other_like" onClick={this.handleShowLike}> { this.props.amountLike !== 0 ? this.props.amountLike + " like" : <span className="like_first">
+                                </span> }  </span>}
+                                    </div> 
+        
+                                }
+        
+        
+                             {this.state.isShowUsersLike && <div className="wrapper_other_likes">
+                                 <div className="header_other_likes">Likes</div>
+                                 {
+                                    post.likes.map(like => <div className="other_likes">
+                                        
+                                        <div className="user_nameAvatar">
+                                            <Link to={`/${like.email}/`}>                  
+                                                    <img className="avatar_like" src= {like.avatarUrl} alt=""/>
+                                                    <span className="user_name">{ like.name}</span> 
+                                            </Link>
+                                        </div>
+                                        <button className="btn_follow">Follow</button>
+                                    </div>)
+                                }
+                                </div>}
+        
+                           </div>
+
                             {/* ==========================User COMMENTS ========================== */}
                           <div className="wrapper_commentTL">
-                            {
-        
-                                this.props.userCommented.map(cmt=><div className="user_comment">
+                            {this.props.userCommented.map((cmt, index)=><div className="user_comment">
                                             <div className="user_nameAvatar">
                                                 <div className="avatar_content">
                                                     <Link to={`/${cmt.userCommented.email}/`}>                  
@@ -88,25 +128,17 @@ export default class Render_DetailPost_TimeLine extends Component {
                                                 <div className="date_comment">
                                                     {moment(cmt.dateComment).fromNow()}
                                                 </div>
-                                                <span className="delCmt" onClick={() => this.props.handleDelComment(cmt)} >...</span>
-                                   
+                                            <span className="delCmt" onClick={() => this.props.handleDelComment(cmt)} >...</span>      
                                 </div>)
                             }
+                            {this.props.userCommentRest.length ? <Link  to={`/p/${post._id}`} className="user_cmt_rest">View All {this.props.userCommentRest.length} Comment</Link>: ''}
                             </div>
                             {/* ========================== btn like, cmt, share ==========================  */}
-                           
-                          
-        
-        
-                       
-                         
-                          
                         {/* DATE POST */}
                         <div className="date_postTL">
-                           
                             {moment(post.datePost).fromNow()}
                         </div>
-                        <Comment data={this.props.match} handleComment={this.props.handleComment} isFocusCmt={this.state.isFocusCmt} />
+                        <Comment data={this.props.match} indexItem={this.props.indexItem} handleComment={this.props.handleComment} isFocusCmt={this.state.isFocusCmt} />
                         </div>
                     </div>
                     

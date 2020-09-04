@@ -36,6 +36,7 @@ export default class Render_DetailPost_Profile extends Component {
       }
     render(){
         const info = JSON.parse(localStorage.getItem("info"));
+        console.log(this.props.history,'\n\n\n',this.props.match);
         if(!this.isEmpty(this.props.postDetail) ){
             var imgPostDetail = [].concat(this.props.postDetail).map( (post, i)=> <div>
                 <img src={post.imgPostUrl} alt=""/>
@@ -44,11 +45,11 @@ export default class Render_DetailPost_Profile extends Component {
             <div className="overlay">
             {/* {console.log(post.authorID)} */}
                     <div className="a_overlay" 
-                        onClick={() => {this.props.history.push(`/${info.user.email}/`)} }>
+                        onClick={() => {this.props.history.goBack()} }>
                         <div>
                             <img onClick={() => {
-                            this.props.history.push(`/${info.user.email}/`);
-                        }} className="close_post" src={closeIcon} alt=""/>
+                            this.props.history.goBack()
+                        }} className="close_post_detail" src={closeIcon} alt=""/>
                         </div>
                     </div>
                     <div key={i} className="post_detail">
@@ -104,13 +105,8 @@ export default class Render_DetailPost_Profile extends Component {
                         
                                 <button className="btn_share"> <img src={share} alt=""/> </button>
                             </div>
-                          
-        
-        
-                       
-                         
+
                            <div className="likes">
-                           
                             {/* {
                                 {/* ========================== User LIKES ==========================  */}
                                 { post.likes.length === 0 ?

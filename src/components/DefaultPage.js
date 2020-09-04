@@ -4,9 +4,6 @@ import TimeLine from '../features/TimeLine/TimeLine'
 import Render_Post_img_TimeLine from '../features/Render/Render_Post_img_TimeLine'
 
 export default class DefaultPage extends Component {
-    componentDidUpdate(){
-        console.log("update")
-    }
     render(){
   
       const info = JSON.parse( localStorage.getItem('info') );
@@ -20,7 +17,6 @@ export default class DefaultPage extends Component {
             <Render_Post_img_TimeLine 
               inputNameAvatar="imgPostUrl"
               urlApi={process.env.REACT_APP_URL_POST}
-     
              />
             <TimeLine />
             

@@ -68,7 +68,7 @@ export default class DetailPost extends Component{
         this.setState((prevState) => ({userCommented: prevState.userCommented.slice(0,i).concat(prevState.userCommented.slice(i+1) ) }));
         
     }
-
+   
        
     render(){
         const {match} = this.props

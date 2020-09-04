@@ -29,16 +29,15 @@ export default class Comment extends Component{
             console.log(res)
         } )
         .catch(err => console.log(err) )
-
+        
         this.props.handleComment({
             "userCommented": {
-                avatarUrl : info.user.avatarUrl,
-                name: info.user.name
+                ...info.user
             },
             "textCommented": this.state.textCommented,
             dateComment: Date.now()
-        });
-
+        }, this.props.indexItem);
+        console.log( this.props.indexItem);
     }
     handleOnChange = (e) => {
         e.target.value ? this.setState({disabled: false, textCommented: e.target.value }) : this.setState({disabled: true, textCommented: ""});

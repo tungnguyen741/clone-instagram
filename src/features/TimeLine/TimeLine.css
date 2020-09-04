@@ -28,6 +28,12 @@ a.author{
     position: static;
     bottom: 64px;
 }
-.info_detailTL .Comment{
+.post_detailTL .Comment{
     position: static;
+}
+.info_detailTL{
+    flex-basis: 40%;
+    background: #fff;
+    height: 100%;
+    position: relative;
 }

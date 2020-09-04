@@ -54,7 +54,6 @@ export default class Render_Post_img_Avatar extends Component{
             console.log(res.data, info)
         })
         .catch(err => {
-            
             this.setState({postSuccess: "failed", loading: false});
             console.log(err)
         })

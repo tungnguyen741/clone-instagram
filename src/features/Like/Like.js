@@ -4,14 +4,13 @@ import './Like.css'
 import heart from "../../image/heart.svg"
 import heartBlack from "../../image/heart_black.svg"
 export default class Like extends Component {
-    
-
     handleLikePost = async (e) => {
         e.preventDefault();
         const info = JSON.parse (localStorage.getItem('info') );
-        console.log("LIKE");
-        this.props.handleLikePost();
+      
         this.props.handleUpAmountLike();
+        this.props.handleLikePost();
+
         axios.post(`${process.env.REACT_APP_URL_POST}/${this.props.data.params.id}/like`, {
             "id_user_like": info.user._id
         })

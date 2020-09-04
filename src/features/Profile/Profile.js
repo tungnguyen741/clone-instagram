@@ -37,13 +37,13 @@ export default class Profile extends Component{
             })
             .catch(error => {
                 this.setState({loading: false});
-                console.log('USER SIGNED ERROR',error)
+                // console.log('USER SIGNED ERROR',error)
             })
 
         //Get All Post filter Post of author
         axios.get(`${process.env.REACT_APP_URL_POST}/${this.props.match.params.user_id}/author`, axios.defaults.headers.common['Authorization'] = info.accessToken)    
             .then(res => {
-                console.log('allPosted of users PR', res.data)
+                // console.log('allPosted of users PR', res.data)
                 this.setState({loading: false, allPosted: res.data});
             })
             .catch(error => {
@@ -64,7 +64,7 @@ export default class Profile extends Component{
         //Get All Post filter Post of author
         axios.get(`${process.env.REACT_APP_URL_POST}/${this.props.match.params.user_id}/author`, axios.defaults.headers.common['Authorization'] = info.accessToken)    
             .then(res => {
-                console.log('allPosted of users PR', res.data)
+                // console.log('allPosted of users PR', res.data)
                 this.setState({loading: false, allPosted: res.data});
             })
             .catch( );
