@@ -132,7 +132,7 @@ export default class Render_DetailPost_TimeLine extends Component {
                                 </div>)
                             }
                             {/* {this.props.userCommentRest.length ? <Link  to={`/p/${post._id}`} className="user_cmt_rest">View All {this.props.userCommentRest.length} Comment</Link>: ''} */}
-                            {this.props.userCommentRest.length ? <div onClick className="user_cmt_rest">View All {this.props.userCommentRest.length} Comment </div>: ''}
+                            {this.props.userCommentRest.length > 3 ? <Link to={`/p/${post._id}`} className="user_cmt_rest">View All {this.props.userCommentRest.length} Comment </Link>: ''}
                             </div>
                             {/* ========================== btn like, cmt, share ==========================  */}
                         {/* DATE POST */}

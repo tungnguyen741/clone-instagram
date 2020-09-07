@@ -137,3 +137,9 @@ img.closeImg {
 .file_uploaded:hover .overlay_TL{
     display: block;
 }
+.user_cmt_rest {
+    padding: 16px;
+    font-size: 14px;
+    color: #a9a9a9;
+    cursor: pointer;
+}
