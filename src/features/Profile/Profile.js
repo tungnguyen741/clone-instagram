@@ -92,7 +92,7 @@ export default class Profile extends Component{
         // const {match, info} = this.props;
         const {match} = this.props;
         const info = JSON.parse(localStorage.getItem('info'));
-
+    
         if(!info){
             return <Redirect to="/" />
         }
@@ -125,7 +125,7 @@ export default class Profile extends Component{
         if(this.state.loading)
             return (<Loading loadingIcon={loadingIcon} />)
  
-      
+  
         return(   
                 <div className="Profile">
                     <div className="container">
@@ -133,11 +133,10 @@ export default class Profile extends Component{
                             <div className="avatar">
                                 <span className="avatar_img">
                                     <img src={this.state.user_signed.avatarUrl} alt=""/>
-                                    <div onClick={this.handleShowPostAvatar} className="showPostImg">
+                                    {this.props.match.params.user_id === info.user.email && <div onClick={this.handleShowPostAvatar} className="showPostImg">
                                         <img src={cameraIcon} alt=""/>
                                         <div className="update"> Cập nhật</div>
-                                    </div>
-                                    
+                                    </div>}   
                                 </span>
                             </div>
                           
