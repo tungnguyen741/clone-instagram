@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - Comment
 - Like
 
-+ Updating: Followers 
+#Updating: Followers 
 ## API
 > .env
 - REACT_APP_URL_LOGIN = 'https://demo-express-codersx.herokuapp.com/api/login'
