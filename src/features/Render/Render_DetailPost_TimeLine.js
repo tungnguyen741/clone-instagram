@@ -131,7 +131,8 @@ export default class Render_DetailPost_TimeLine extends Component {
                                             <span className="delCmt" onClick={() => this.props.handleDelComment(cmt)} >...</span>      
                                 </div>)
                             }
-                            {this.props.userCommentRest.length ? <Link  to={`/p/${post._id}`} className="user_cmt_rest">View All {this.props.userCommentRest.length} Comment</Link>: ''}
+                            {/* {this.props.userCommentRest.length ? <Link  to={`/p/${post._id}`} className="user_cmt_rest">View All {this.props.userCommentRest.length} Comment</Link>: ''} */}
+                            {this.props.userCommentRest.length ? <div onClick className="user_cmt_rest">View All {this.props.userCommentRest.length} Comment </div>: ''}
                             </div>
                             {/* ========================== btn like, cmt, share ==========================  */}
                         {/* DATE POST */}

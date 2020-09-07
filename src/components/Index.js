@@ -82,9 +82,9 @@ export default class Index extends Component{
                   
                       <div className="signined">  
                         <Switch>
-                            <Route exact path="/" render={ (props) => <DefaultPage {...props} info={info} /> } />
-                            <Route exact path="/p/:id/"  render={ (props) => <DetailPost  {...props} info={info} /> } /> 
-                            <Route path="/:user_id/" render={ (props) => <Profile {...props}/> }  info={info} /> 
+                            <Route exact path={['/clone-instagram','/']} render={ (props) => <DefaultPage {...props} info={info} /> } />
+                            <Route exact path={['/p/:id/',"/clone-instagram/p/:id/"]}  render={ (props) => <DetailPost  {...props} info={info} /> } /> 
+                            <Route path={["/clone-instagram/:user_id/", '/:user_id/']} render={ (props) => <Profile {...props}/> }  info={info} /> 
                         </Switch>
                       </div>
                       <Footer></Footer>
@@ -95,11 +95,11 @@ export default class Index extends Component{
           return (
             <Switch>
             
-          <Route exact path="/accounts/emailsignup" >
+          <Route exact path={['/accounts/emailsignup',"/clone-instagram/accounts/emailsignup"]}>
               <Sign_up/>
           </Route>
         
-          <Route exact path="/" >
+          <Route  exact path={['/clone-instagram','/']}>
             <div className="Index">
               
                   <div className="wrapper_content">
@@ -137,7 +137,7 @@ export default class Index extends Component{
                                 </div>
                               </div>
                             </div>
-                          <Not_account link="/accounts/emailsignup" btn_signUp="Sign up">
+                          <Not_account link="clone-instagram/accounts/emailsignup" btn_signUp="Sign up">
                             Don't have an account?
                           </Not_account>
                           <Get_app/>

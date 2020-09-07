@@ -75,12 +75,12 @@ export default class Render_DetailPost_Profile extends Component {
                                 this.props.userCommented.map(cmt=><div className="user_comment">
                                             <div className="user_nameAvatar">
                                                 <div className="avatar_content">
-                                                    <Link to={`/${cmt.userCommented.email}/`}>                  
+                                                    <Link to={`/clone-instagram/${cmt.userCommented.email}/`}>                  
                                                             <img src= {cmt.userCommented.avatarUrl} alt=""/>    
                                                     </Link>
         
                                                     <div className="content_comment">
-                                                        <Link to={`/${cmt.userCommented.email}/`}>                
+                                                        <Link to={`/clone-instagram/${cmt.userCommented.email}/`}>                
                                                                 <span className="user_name">{cmt.userCommented.name}</span>                                                
                                                             </Link>
                                                             {cmt.textCommented}
@@ -137,7 +137,7 @@ export default class Render_DetailPost_Profile extends Component {
                                     post.likes.map(like => <div className="other_likes">
                                         
                                         <div className="user_nameAvatar">
-                                            <Link to={`/${like.email}/`}>                  
+                                            <Link to={`/clone-instagram/${like.email}/`}>                  
                                                     <img className="avatar_like" src= {like.avatarUrl} alt=""/>
                                                     <span className="user_name">{ like.name}</span> 
                                             </Link>
