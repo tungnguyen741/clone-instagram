@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import './Render_Post_img_Avatar.css'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom';
-import Loading from '../Loading/Loading'
 import loadingIcon from '../../image/loading3.gif'
 import alert from '../../image/alert.svg'
-import photoIcon from "../../image/photo.svg"
 import closeIcon from "../../image/close.svg"
 import addIcon from "../../image/add.svg"
 import close_gray from "../../image/close_gray.png"
@@ -97,7 +94,7 @@ export default class Render_Post_img_Avatar extends Component{
 
 
         // const {info} = this.state;
-        const info = JSON.parse(localStorage.getItem('info'));
+        
         return(
            <div className="Post_img_avatar">
                 <div className="overlay_avatar"></div>
@@ -105,14 +102,14 @@ export default class Render_Post_img_Avatar extends Component{
            <h1>Cập nhật ảnh đại diện</h1>
            <hr/>
            <div onClick={this.props.handleShowPostAvatar} className="close_post">
-            <img src={close_gray} alt=""/>
+            <img src={close_gray} alt="close icon"/>
            </div>
           
            <form  encType="multipart/form-data">
                
                 <label for="imgPostUrl" class="custom-file-upload_avatar">
                     <span className="plus">
-                        <img src={addIcon} alt=""/>
+                        <img src={addIcon} alt="add icon"/>
                     </span>
                     <span>Tải ảnh lên</span>
                 </label>
@@ -121,13 +118,13 @@ export default class Render_Post_img_Avatar extends Component{
                     <div className="file_uploaded">
                         <img src={URL.createObjectURL(this.state.file)} alt="fileUploaded"/>
                         <div className="overlay_TL"></div>
-                        <img src={closeIcon} onClick={this.closeImg} className="closeImg" />
+                        <img src={closeIcon} onClick={this.closeImg} className="closeImg" alt="close icon" />
                     </div>
                 </div> }
                 <input onChange={this.getFile} ref={this.file_img} id="imgPostUrl" type="file" name={this.props.inputNameAvatar} />
                 <div className="btn_post">
                     <button disabled={ this.state.file && ! this.state.loading ? false : true} onClick={this.postImg} >
-                        { this.state.loading ? <img className="loading" src={loadingIcon} alt=""/> : <div>Cập nhật</div> }
+                        { this.state.loading ? <img className="loading" src={loadingIcon} alt="loading icon"/> : <div>Cập nhật</div> }
                     </button>
                 </div>
                 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component } from 'react';
-import {  Link, Router, Route } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import closeIcon from '../../image/close.svg'
 import moment from 'moment'
 import Like from '../Like/Like'
@@ -35,14 +35,10 @@ export default class Render_DetailPost_Profile extends Component {
         return JSON.stringify(obj) === JSON.stringify({});
       }
     render(){
-        const info = JSON.parse(localStorage.getItem("info"));
-        console.log(this.props.history,'\n\n\n',this.props.match);
         if(!this.isEmpty(this.props.postDetail) ){
-            var imgPostDetail = [].concat(this.props.postDetail).map( (post, i)=> <div>
-                <img src={post.imgPostUrl} alt=""/>
-            </div>)
+          
             var imgPostDetail = [].concat(this.props.postDetail).map( (post, i)=>
-            <div className="overlay">
+            <div className="overlay" key={i}>
             {/* {console.log(post.authorID)} */}
                     <div className="a_overlay" 
                         onClick={() => {this.props.history.goBack()} }>
@@ -72,28 +68,45 @@ export default class Render_DetailPost_Profile extends Component {
                           <div className="wrapper_comment">
                             {
         
-                                this.props.userCommented.map(cmt=><div className="user_comment">
+                                this.props.userCommented.map((cmt, i)=><div key={i} className="user_comment">
                                             <div className="user_nameAvatar">
+                                                {cmt.userCommented ?
                                                 <div className="avatar_content">
-                                                    <Link to={`/clone-instagram/${cmt.userCommented.email}/`}>                  
-                                                            <img src= {cmt.userCommented.avatarUrl} alt=""/>    
+                                                    <Link to={`/${ cmt.userCommented.email }/`}>                  
+                                                            <img src= {  cmt.userCommented.avatarUrl} alt=""/>    
                                                     </Link>
-        
                                                     <div className="content_comment">
-                                                        <Link to={`/clone-instagram/${cmt.userCommented.email}/`}>                
-                                                                <span className="user_name">{cmt.userCommented.name}</span>                                                
-                                                            </Link>
+                                                        <Link to={`/${ cmt.userCommented.email }/`}>                
+                                                                <span className="user_name">{ cmt.userCommented.name  }</span>                                                
+                                                        </Link>
                                                             {cmt.textCommented}
                                                     </div>
                                                     {/* DATE comment */}
                                                 </div>
+                                                     :  <div className="avatar_content">
+                                                    <div>
+                                                                       
+                                                            <img src='https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png' alt=""/>    
+                                                    </div>
+                                                    <div className="content_comment">
+                                                        <div>
+                                                     
+                                                                <span className="user_name">Người dùng</span>                                                
+                                                        </div>
+                                                            {cmt.textCommented}
+                                                    </div>
+                                                    {/* DATE comment */}
+                                                </div>
+                                                }
                                             </div>
                                                 <div className="date_comment">
-                                                    {moment(cmt.dateComment).fromNow()}
+                                                    { cmt.userCommented ? moment(cmt.dateComment).fromNow() : ''}
                                                 </div>
+                                                
                                                 <span className="delCmt" onClick={() => this.props.handleDelComment(cmt)} >...</span>
                                    
                                 </div>)
+                                                
                             }
                             </div>
                             {/* ========================== btn like, cmt, share ==========================  */}
@@ -134,10 +147,10 @@ export default class Render_DetailPost_Profile extends Component {
                              {this.state.isShowUsersLike && <div className="wrapper_other_likes">
                                  <div className="header_other_likes">Likes</div>
                                  {
-                                    post.likes.map(like => <div className="other_likes">
+                                    post.likes.map((like, i) => <div key={i} className="other_likes">
                                         
                                         <div className="user_nameAvatar">
-                                            <Link to={`/clone-instagram/${like.email}/`}>                  
+                                            <Link to={`/${like.email}/`}>                  
                                                     <img className="avatar_like" src= {like.avatarUrl} alt=""/>
                                                     <span className="user_name">{ like.name}</span> 
                                             </Link>

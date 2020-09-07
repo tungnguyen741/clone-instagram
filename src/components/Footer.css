@@ -14,11 +14,12 @@
     display: inline-block;
     padding: 0 8px;
   }
-  .Footer ul li a {
+  .Footer ul li div {
     text-decoration: none;
     color: #00376b;
     text-transform: uppercase;
     font-size: 13px;
+    cursor: pointer;
   }
   .Footer span {
     float: right;

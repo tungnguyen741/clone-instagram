@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import loadingIcon from '../../image/loading2.svg'
 import './Profile.css'
-import { Redirect, Link,  BrowserRouter as Router, Route } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
-import Footer from '../../components/Footer'
-import closeIcon from '../../image/close.svg'
 import cameraIcon from '../../image/photography.png'
 import Loading from '../Loading/Loading'
-import Comment from '../Comment/Comment'
-import Render_Post_img_Avatar from '../Render/Render_Post_img_Avatar'
-import Menu from '../Menu/Menu'
+import RenderPostImgAvatar from '../Render/Render_Post_img_Avatar'
  
 export default class Profile extends Component{
     constructor(){
@@ -90,7 +86,7 @@ export default class Profile extends Component{
     render(){
          
         // const {match, info} = this.props;
-        const {match} = this.props;
+        
         const info = JSON.parse(localStorage.getItem('info'));
     
         if(!info){
@@ -108,12 +104,12 @@ export default class Profile extends Component{
                 postClone.push( this.state.allPosted[position] );
 
                 var imgPosted = this.state.allPosted.map((p,i) =>
-                    <div  className="article">
+                    <div key={i} className="article">
                         <Link to={{
                             pathname: `/p/${p._id}`,
                             state: { from: this.props.pathname  }
                         }}>
-                                <img src = {p.imgPostUrl} />
+                                <img src = {p.imgPostUrl} alt="img_posted" />
                         </Link>
                         
                     </div>
@@ -132,9 +128,9 @@ export default class Profile extends Component{
                         <div className="info_user">
                             <div className="avatar">
                                 <span className="avatar_img">
-                                    <img src={this.state.user_signed.avatarUrl} alt=""/>
+                                    <img src={this.state.user_signed.avatarUrl} alt="avatar user sign"/>
                                     {this.props.match.params.user_id === info.user.email && <div onClick={this.handleShowPostAvatar} className="showPostImg">
-                                        <img src={cameraIcon} alt=""/>
+                                        <img src={cameraIcon} alt="camera icon"/>
                                         <div className="update"> Cập nhật</div>
                                     </div>}   
                                 </span>
@@ -163,7 +159,7 @@ export default class Profile extends Component{
                         </div>
                     </div>
                     {this.state.isShowPostAvatar && 
-                                    <Render_Post_img_Avatar
+                                    <RenderPostImgAvatar
                                         info={info}
                                         inputNameAvatar="avatar"
                                         urlApi={`${process.env.REACT_APP_URL_USER}/${info.user._id}/avatar`}

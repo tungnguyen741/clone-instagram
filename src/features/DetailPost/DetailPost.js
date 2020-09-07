@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import loadingIcon from '../../image/loading.svg'
 import './DetailPost.css'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios';
-import Footer from '../../components/Footer'
-import Loading from '../Loading/Loading'
- 
-import Menu from '../Menu/Menu'
-
 import RenderPostDetail from "../Render/Render_DetailPost_Profile"
 export default class DetailPost extends Component{
     constructor(){
@@ -27,7 +21,6 @@ export default class DetailPost extends Component{
             amountLike: 0,
             userCommented: ""
         }
-        const info = JSON.parse( localStorage.getItem('info') );
  
     }
     componentDidMount(){
@@ -71,12 +64,10 @@ export default class DetailPost extends Component{
    
        
     render(){
-        const {match} = this.props
         const info = JSON.parse( localStorage.getItem('info') );
         if(!info){
             return <Redirect to="/" />
         }
-    //    console.log(this.state.postDetail, "\n", this.props.match.params.id)
      
         return(   
                 <div className="DetailPost">

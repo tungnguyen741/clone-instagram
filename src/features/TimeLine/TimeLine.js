@@ -2,7 +2,7 @@ import React from 'react'
 import { Component } from 'react'
 import axios from 'axios'
 import './TimeLine.css'
-import Render_DetailPost_TimeLine from '../Render/Render_DetailPost_TimeLine'
+import RenderDetailPostTimeLine from '../Render/Render_DetailPost_TimeLine'
 export default class TimeLine extends Component{
     constructor(props){
         super(props);
@@ -24,7 +24,7 @@ export default class TimeLine extends Component{
                 amountLike: res.data.map(item => item.likes.length )
             })
             })
-            .catch(err => console.log(err));
+            .catch();
         }
         
     handleUnLikePost = (item) => {
@@ -35,22 +35,14 @@ export default class TimeLine extends Component{
     }   
     
     handlelikePost = (item) => {
- 
         let index = this.state.dataTimeLine.indexOf(item);
-        console.log(index);
-        // // console.log("like cai,", item)
-        // // const info = JSON.parse(localStorage.getItem("info"));
-        // //this.setState((prevState) => ({ Liked: [...prevState.Liked.slice(0, index), { _id: info.user._id}, ...prevState.Liked.slice(index + 1)  ]  }))
         this.setState({ Liked: [...this.state.Liked.slice(0, index), !this.state.Liked[index], ...this.state.Liked.slice(index + 1)  ]  })
-        // this.setState({isLiked: !this.state.isLiked})
     }
     handleUpAmountLike = (item) => {
-        console.log("like caiamoutup,", item)
         let index = this.state.dataTimeLine.indexOf(item);
         this.setState((prevState) => ({ amountLike: [...prevState.amountLike.slice(0, index), prevState.amountLike[index] + 1,  ...prevState.amountLike.slice(index + 1)] }))
     }
     handleDownAmountLike = (item) => {
-        console.log("like caiamoutDown,", item)
         let index = this.state.dataTimeLine.indexOf(item);
         this.setState((prevState) => ({ amountLike: [...prevState.amountLike.slice(0, index), prevState.amountLike[index] - 1,  ...prevState.amountLike.slice(index + 1)] }))
     }
@@ -63,28 +55,12 @@ export default class TimeLine extends Component{
         this.setState({ dataTimeLine: [...this.state.dataTimeLine.slice(0, index), ...this.state.dataTimeLine.slice(index + 1) ] })
     }
 
-    // componentDidUpdate(props, a , b, c){
-        
-    //     // const info = JSON.parse(localStorage.getItem("info"));
-    //     // axios.get(`${process.env.REACT_APP_URL_POST}/timeLine/date`)
-    //     // .then(res => {
-    //     //     this.setState((prevState) => ({
-    //     //         dataTimeLine: res.data ,
-    //     //         Liked: res.data.map(item => item.likes.find(like => like._id===info.user._id) ).map(item => item ? true : false ),
-    //     //         amountLike: res.data.map(item => item.likes.length )
-    //     //     }))
-    //     //     })
-    //     //     .catch(err => console.log(err));
-    // }
- 
     render(){
-        //const {info}= this.props;
-        //console.log(this.state.Liked[0], '\n',this.state.amountLike[0], '\n', this.state.dataTimeLine)
-        //console.log(this.state.userCommented, this.state.dataTimeLine)
         return(
             <div className="TimeLine">
-                 {this.state.dataTimeLine.map((item, index )=> <div>
-                    <Render_DetailPost_TimeLine
+                 {this.state.dataTimeLine.map((item, index )=> 
+                 <RenderDetailPostTimeLine
+                        key={index}
                         postDetail={item} 
                         userCommented={item.comments.slice(0,5)} 
                         userCommentRest={item.comments}
@@ -99,7 +75,6 @@ export default class TimeLine extends Component{
                         handleComment={this.handleComment}
                         handleDelComment={this.handleDelComment}
                      />
-                 </div>
                  )}
             </div>
         );

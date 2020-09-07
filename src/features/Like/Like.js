@@ -14,22 +14,17 @@ export default class Like extends Component {
         axios.post(`${process.env.REACT_APP_URL_POST}/${this.props.data.params.id}/like`, {
             "id_user_like": info.user._id
         })
-        .then(res => {
-            console.log("res like", res)})
-        .catch(err => console.log(err.message));
+        .catch();
     }
     handleUnlikePost = (e) => {
         e.preventDefault();
         const info = JSON.parse (localStorage.getItem('info') );
-        console.log("unlike")
         this.props.handleDownAmountLike();
         this.props.handleLikePost();
         axios.post(`${process.env.REACT_APP_URL_POST}/${this.props.data.params.id}/unlike`, {
             "id_user_like": info.user._id
         })
-        .then(res => {
-            console.log("res like", res)})
-        .catch(err => console.log(err.message));
+        .catch();
     }
     render(){
        

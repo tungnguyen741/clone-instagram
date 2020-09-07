@@ -1,7 +1,6 @@
 import React from 'react'
 import { Component } from 'react';
-import {  Link, Router, Route } from 'react-router-dom';
-import closeIcon from '../../image/close.svg'
+import {Link} from 'react-router-dom';
 import moment from 'moment'
 import Like from '../Like/Like'
 import comment from "../../image/comment.svg"
@@ -35,16 +34,13 @@ export default class Render_DetailPost_TimeLine extends Component {
         return JSON.stringify(obj) === JSON.stringify({});
       }
     render(){
-        const info = JSON.parse(localStorage.getItem("info"));
         // console.log(this.props.handleLikePost);
         if(!this.isEmpty(this.props.postDetail) ){
-            var imgPostDetail = [].concat(this.props.postDetail).map( (post, i)=> <div>
-                <img src={post.imgPostUrl} alt=""/>
-            </div>)
+ 
             var imgPostDetail = [].concat(this.props.postDetail).map( (post, i)=>
-            <div className="post">
+            <div className="post"  key={i}>
             {/* {console.log(post.authorID)} */}
-                    <div key={i} className="post_detailTL">
+                    <div className="post_detailTL">
                         <Link to={post.authorID.email} className="author">
                             <img src={post.authorID.avatarUrl} alt=""/>
                             <span className="author_name">{post.authorID.email}</span>
@@ -92,7 +88,7 @@ export default class Render_DetailPost_TimeLine extends Component {
                              {this.state.isShowUsersLike && <div className="wrapper_other_likes">
                                  <div className="header_other_likes">Likes</div>
                                  {
-                                    post.likes.map(like => <div className="other_likes">
+                                    post.likes.map((like, i) => <div key={i} className="other_likes">
                                         
                                         <div className="user_nameAvatar">
                                             <Link to={`/${like.email}/`}>                  
@@ -109,21 +105,36 @@ export default class Render_DetailPost_TimeLine extends Component {
 
                             {/* ==========================User COMMENTS ========================== */}
                           <div className="wrapper_commentTL">
-                            {this.props.userCommented.map((cmt, index)=><div className="user_comment">
+                            {this.props.userCommented.map((cmt, index)=><div key={index} className="user_comment">
                                             <div className="user_nameAvatar">
+                                            {cmt.userCommented ?
                                                 <div className="avatar_content">
-                                                    <Link to={`/${cmt.userCommented.email}/`}>                  
-                                                            <img src= {cmt.userCommented.avatarUrl} alt=""/>    
+                                                    <Link to={`/${ cmt.userCommented.email }/`}>                  
+                                                            <img src= {  cmt.userCommented.avatarUrl} alt=""/>    
                                                     </Link>
-        
                                                     <div className="content_comment">
-                                                        <Link to={`/${cmt.userCommented.email}/`}>                
-                                                                <span className="user_name">{cmt.userCommented.name}</span>                                                
-                                                            </Link>
+                                                        <Link to={`/${ cmt.userCommented.email }/`}>                
+                                                                <span className="user_name">{ cmt.userCommented.name  }</span>                                                
+                                                        </Link>
                                                             {cmt.textCommented}
                                                     </div>
                                                     {/* DATE comment */}
                                                 </div>
+                                                     :  <div className="avatar_content">
+                                                    <div>
+                                                                       
+                                                            <img src='https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png' alt=""/>    
+                                                    </div>
+                                                    <div className="content_comment">
+                                                        <div>
+                                                     
+                                                                <span className="user_name">Người dùng</span>                                                
+                                                        </div>
+                                                            {cmt.textCommented}
+                                                    </div>
+                                                    {/* DATE comment */}
+                                                </div>
+                                                }
                                             </div>
                                                 <div className="date_comment">
                                                     {moment(cmt.dateComment).fromNow()}

@@ -27,7 +27,7 @@ input.input_login.input_login_pass {
     background: #0095f6 !important;
     cursor: pointer;
 }
-a.show_pass {
+.show_pass {
   position: absolute;
   right: 14px;
   top: 55px;
@@ -35,6 +35,12 @@ a.show_pass {
   text-decoration: none;
   color: #000;
   font-size: 14px;
+  background: 0;
+  border:0;
+  cursor:pointer
+}
+.show_pass::selection{
+  background: transparent;
 }
 .input_user_holder {
   position: absolute;

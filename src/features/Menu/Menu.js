@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import './Menu.css'
 import classNames from 'classnames'
-import {
-    Link, Redirect, Route, BrowserRouter as Router
-} from "react-router-dom";
-import Profile from '../Profile/Profile'
+import {Link, Redirect} from "react-router-dom";
 import Loading from '../Loading/Loading'
 import logo_insta from '../../image/instagram-new-logo.svg'
 import profileIcon from '../../image/profile.svg'
@@ -80,7 +77,7 @@ export default class Menu extends Component{
         
         const {info} = this.props;
         if(this.state.users_searched){
-            const users_searched = [].concat(this.state.users_searched).map(user => <div className="users_searched">
+             [].concat(this.state.users_searched).map(user => <div className="users_searched">
                 {user.name}
                 {user.email}
             </div> )

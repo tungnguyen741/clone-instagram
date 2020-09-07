@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Render_Post_img_TimeLine.css'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
-import Loading from '../Loading/Loading'
 import loadingIcon from '../../image/loading3.gif'
 import alert from '../../image/alert.svg'
 import photoIcon from "../../image/photo.svg"
@@ -100,8 +99,8 @@ export default class Render_Post_img_TimeLine extends Component{
                     <img src={info.user.avatarUrl} alt="avatar"/>
                     <input onBlur={this.handle_blur} onFocus={this.handle_focus} className={this.state.fontScale ? "input_text_description fontScale" : "input_text_description"} ref={this.text_description} onChange={this.getText} type="text" name="description" placeholder={`${info.user.name} ơi, bạn đang nghĩ gì?`} />
                 </div>
-                <label for="imgPostUrl" class="custom-file-upload">
-                    <img src={photoIcon} alt=""/>
+                <label htmlFor="imgPostUrl" className="custom-file-upload">
+                    <img src={photoIcon} alt="icon_photo"/>
                     Ảnh
                 </label>
                 {this.state.file && <div className="fileSelected">
@@ -109,7 +108,7 @@ export default class Render_Post_img_TimeLine extends Component{
                     <div className="file_uploaded">
                         <img src={URL.createObjectURL(this.state.file)} alt="fileUploaded"/>
                         <div className="overlay_TL"></div>
-                        <img src={closeIcon} onClick={this.closeImg} className="closeImg" />
+                        <img src={closeIcon} onClick={this.closeImg} className="closeImg" alt="close" />
                     </div>
                 </div> }
                 <input onChange={this.getFile} ref={this.file_img} id="imgPostUrl" type="file" name={this.props.inputNameAvatar} />

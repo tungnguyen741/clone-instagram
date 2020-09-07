@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import TimeLine from '../features/TimeLine/TimeLine'
-import Render_Post_img_TimeLine from '../features/Render/Render_Post_img_TimeLine'
+import RenderPostImgTimeLine from '../features/Render/Render_Post_img_TimeLine'
 
 export default class DefaultPage extends Component {
     render(){
@@ -14,7 +14,7 @@ export default class DefaultPage extends Component {
             
             {/* <p>{moment("Thu Jun 20 2020 16:00:41 GMT+0700 (Indochina Time)").format("MMMM DD, YYYY")}</p> 
             <p>{moment(moment("Thu Jun 20 2020 16:00:41 GMT+0700 (Indochina Time)").format("MMMM DD, YYYY")).fromNow()}</p> */}
-            <Render_Post_img_TimeLine 
+            <RenderPostImgTimeLine 
               inputNameAvatar="imgPostUrl"
               urlApi={process.env.REACT_APP_URL_POST}
              />

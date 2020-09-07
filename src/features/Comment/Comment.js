@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import './Comment.css'
-import classNames from 'classnames'
-import { Router, Redirect, Route, Link } from 'react-router-dom';
-import comment from "../../image/comment.svg"
 import axios from "axios"
 export default class Comment extends Component{
     constructor(){
@@ -19,16 +16,12 @@ export default class Comment extends Component{
     handleCommentPost(e){
         e.preventDefault();
         const info = JSON.parse( localStorage.getItem("info") );
-        console.log("COMMENT");
         this.inputCmt.current.value = "";
         axios.post(`${process.env.REACT_APP_URL_POST}/${this.props.data.params.id}/comment`, {
             "userCommented": info.user._id,
             "textCommented": this.state.textCommented
         })
-        .then(res => {
-            console.log(res)
-        } )
-        .catch(err => console.log(err) )
+        .catch();
         
         this.props.handleComment({
             "userCommented": {
@@ -37,7 +30,6 @@ export default class Comment extends Component{
             "textCommented": this.state.textCommented,
             dateComment: Date.now()
         }, this.props.indexItem);
-        console.log( this.props.indexItem);
     }
     handleOnChange = (e) => {
         e.target.value ? this.setState({disabled: false, textCommented: e.target.value }) : this.setState({disabled: true, textCommented: ""});

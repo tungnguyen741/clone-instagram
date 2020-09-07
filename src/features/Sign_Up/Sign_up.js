@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './Sign_up.css'
-import Not_account from '../../components/Not_account';
-import Get_app from '../../components/Get_app';
+import NotAccount from '../../components/Not_account';
+import GetApp from '../../components/Get_app';
 import Footer from '../../components/Footer';
-import logo_fb_blue from '../../image/facebook-blue.svg'
 import logo_insta from '../../image/instagram-new-logo.png'
 import axios from 'axios'
 import Loading from '../Loading/Loading'
@@ -30,8 +29,7 @@ export default class Sign_up extends Component{
         
     }
     sigup_account(e){
-        const {name, email, password, loading} = this.state;
- 
+        const {name, email, password} = this.state; 
         e.preventDefault();
         this.setState({loading: true});
         axios.post(process.env.REACT_APP_URL_USER,{ name, email, password})
@@ -79,12 +77,12 @@ export default class Sign_up extends Component{
                             </div>
                         </div>
                             <div className="sign_up_not_account">
-                                <Not_account link="/" btn_signUp="Log in">
+                                <NotAccount link="/" btn_signUp="Log in">
                                     Have an account?
-                                </Not_account>
+                                </NotAccount>
                             </div>
                             <div className="sign_up_get_app">
-                                <Get_app/>
+                                <GetApp/>
                             </div>
                     </div>
                 

@@ -2,25 +2,19 @@ import React from 'react'
 import { Component } from 'react';
 import classNames from 'classnames';
 import {
-  BrowserRouter as Router,
   Switch,
-  Route,
-  Link,
-  Redirect,
-  useLocation
+  Route
 } from "react-router-dom";
 import './Index.css'
-import moment from 'moment'
 
-import Sign_in from '../features/Sign_In/Sign_in';
-import Sign_up from '../features/Sign_Up/Sign_up';
+import SignIn from '../features/Sign_In/Sign_in';
+import SignUp from '../features/Sign_Up/Sign_up';
 import NotFound from './NotFound';
-import Not_account from './Not_account'
-import Get_app from './Get_app';
+import NotAccount from './Not_account'
+import GetApp from './Get_app';
 import Footer from './Footer';
 import Profile from '../features/Profile/Profile'
 import Menu from '../features/Menu/Menu'
-import TimeLine from '../features/TimeLine/TimeLine'
 import DetailPost from '../features/DetailPost/DetailPost'
 
 import DefaultPage from './DefaultPage'
@@ -96,7 +90,7 @@ export default class Index extends Component{
             <Switch>
             
           <Route exact path={['/accounts/emailsignup',"/clone-instagram/accounts/emailsignup"]}>
-              <Sign_up/>
+              <SignUp/>
           </Route>
         
           <Route  exact path={['/clone-instagram','/']}>
@@ -119,7 +113,7 @@ export default class Index extends Component{
                             <div className="login">
                               <div className="content-login">
                                 <h1><img src={logo_insta} alt=""/></h1>
-                                  <Sign_in/>
+                                  <SignIn/>
                                 <div className="line">
                                   <div className="line-through"></div>
                                     <span>OR</span>
@@ -137,10 +131,10 @@ export default class Index extends Component{
                                 </div>
                               </div>
                             </div>
-                          <Not_account link="clone-instagram/accounts/emailsignup" btn_signUp="Sign up">
+                          <NotAccount link="clone-instagram/accounts/emailsignup" btn_signUp="Sign up">
                             Don't have an account?
-                          </Not_account>
-                          <Get_app/>
+                          </NotAccount>
+                          <GetApp/>
                       </div>
                   </div>
               </div> 

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './Sign_in.css'
 import classNames from 'classnames'
 import axios from 'axios'
-import Index from '../../components/Index'
-import { Router, Redirect, Route, Link } from 'react-router-dom'
+import {  Redirect } from 'react-router-dom'
 import Loading from '../Loading/Loading'
 import loadingIcon from '../../image/loading.svg'
 export default class Sign_in extends Component{
@@ -39,8 +38,6 @@ export default class Sign_in extends Component{
     check_user_pwd(e){
         this.setState({loading: true});
         e.preventDefault();
-        console.log(this.login_user.current.value, this.login_pwd.current.value)
-        console.log(this.state.user, this.state.pwd)
         axios.post( process.env.REACT_APP_URL_LOGIN ,{
             "email": this.state.user,
             "password": this.state.pwd
@@ -79,7 +76,7 @@ export default class Sign_in extends Component{
                 <input className="input_login input_login_pass" ref={this.login_pwd} onChange={this.checkBtnLogin}  name="password" type={this.state.type}  />
                 <span className= {classNames('input_holder','input_pass_holder',{'pass_holder_change': this.state.pwd})}>Password</span>
                 {
-                    this.state.pwd !== ''  ? (this.state.type==='password' ? <a href="" onClick={this.handle_show_pass} className="show_pass">Show</a> : <a href="" onClick={this.handle_show_pass} className="show_pass">Hide</a>): ''
+                    this.state.pwd !== ''  ? (this.state.type==='password' ? <div onClick={this.handle_show_pass} className="show_pass">Show</div> : <div onClick={this.handle_show_pass} className="show_pass">Hide</div>): ''
                 }
                 {
                     this.state.isPass===false && <p>The username you entered doesn't belong to an account. Please check your username and try again.</p>
