@@ -27,7 +27,7 @@ import img_3 from '../image/img_slide_index4.jpg'
 import img_4 from '../image/img_slide_index5.jpg'
 import img_5 from '../image/img_slide_index6.jpg'
 import logo_insta from '../image/instagram-new-logo.png'
-
+import Messenger from '../features/Messenger/Messenger'
 export default class Index extends Component{
   constructor(){
         super();
@@ -78,6 +78,7 @@ export default class Index extends Component{
                         <Switch>
                             <Route exact path={['/clone-instagram','/']} render={ (props) => <DefaultPage {...props} info={info} /> } />
                             <Route exact path={['/p/:id/',"/clone-instagram/p/:id/"]}  render={ (props) => <DetailPost  {...props} info={info} /> } /> 
+                            <Route exact path='/messages/t/' render={ (props) => <Messenger {...props}/> }  info={info} /> 
                             <Route path={["/clone-instagram/:user_id/", '/:user_id/']} render={ (props) => <Profile {...props}/> }  info={info} /> 
                         </Switch>
                       </div>

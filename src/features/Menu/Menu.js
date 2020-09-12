@@ -90,7 +90,9 @@ export default class Menu extends Component{
                 
                 <div className="wrapper_menu">
                     <div className="Home_Page">
-                    
+                    <Link to='/messages/t/'>
+                        Chat
+                    </Link>
                         <Link to="/">
                             <img src={logo_insta} alt=""/>
                         </Link>

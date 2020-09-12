@@ -19,7 +19,6 @@ export default class DefaultPage extends Component {
               urlApi={process.env.REACT_APP_URL_POST}
              />
             <TimeLine />
-            
             </div>
         )
     }

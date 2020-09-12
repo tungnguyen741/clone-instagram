@@ -127,7 +127,6 @@ export default class Render_DetailPost_TimeLine extends Component {
                                                     </div>
                                                     <div className="content_comment">
                                                         <div>
-                                                     
                                                                 <span className="user_name">Người dùng</span>                                                
                                                         </div>
                                                             {cmt.textCommented}
