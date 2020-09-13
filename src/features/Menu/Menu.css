@@ -47,15 +47,19 @@
     width: 105px;
     height: 75%;
 }
-.tool_bar img {
+.tool_bar > img {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    border: 1px solid;
+ 
     cursor: pointer;
     padding: 2px;
 }
-
+.tool_bar a img {
+    width: 23px;
+    cursor: pointer;
+    padding: 2px;
+}
 .ToolBar {
     opacity: 0;
     visibility: hidden;
@@ -142,13 +146,13 @@
 }
  
 .ToolBar a {
-    padding: 5px 10px 5px 10px;
+    padding: 10px 10px 10px 10px;
     background: #fff;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
 }
 .ToolBar button {
-    padding: 15px 10px 15px 10px;
+    padding: 10px 10px 10px 10px;
     border: 0;
     border-top: 1px solid #dedede;
     text-align: left;
@@ -160,8 +164,11 @@
 .ToolBar {
     position: relative;
     z-index: 1;
-    right: -49px;
+    right: -134px;
     top: 77px;
+}
+.tool_bar > a {
+    padding: 0 17px 0 0;
 }
 .ToolBar.showToolBar::before {
     content: "";

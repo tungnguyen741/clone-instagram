@@ -6,10 +6,14 @@ import {Link, Redirect} from "react-router-dom";
 import Loading from '../Loading/Loading'
 import logo_insta from '../../image/instagram-new-logo.svg'
 import profileIcon from '../../image/profile.svg'
+import homeIcon from '../../image/home.svg'
+import homeActiveIcon from '../../image/homeActive.svg'
+import messIcon from '../../image/share.svg'
+import messActiveIcon from '../../image/share_active.svg'
 export default class Menu extends Component{
     constructor(){
         super();
-        this.url2 = 'http://localhost:3001/api/users';
+    
         this.state={
             isShowToolBar: false,
             loading: false,
@@ -17,7 +21,9 @@ export default class Menu extends Component{
             users_searched: [],
             users: [],
             input_value: '',
-            isOnFocus: false
+            isOnFocus: false,
+            activeBtn: 'home',
+            currentBtn: 'home'
         }
         this.search_user = React.createRef();
         this.showToolBar = this.showToolBar.bind(this);
@@ -39,9 +45,24 @@ export default class Menu extends Component{
         .catch(err => console.log(err.message));
     }
     showToolBar(){
-        this.setState({isShowToolBar: !this.state.isShowToolBar})
+        this.setState((prevState) => {
+ 
+            return {
+                prevBtn: prevState.activeBtn,
+                isShowToolBar: !this.state.isShowToolBar, 
+                activeBtn: !this.state.isShowToolBar ?  'profile' : this.state.prevBtn
+        }})
     }
+
+    handleChangeProfile = () => {
+        this.setState({
+            isShowToolBar: false, 
+            activeBtn:'profile' 
+        })
+    }
+
     handleLogout(){
+        this.showToolBar();
         localStorage.removeItem("info");
     }
     // this.setState({isOnFocus: true})
@@ -70,11 +91,17 @@ export default class Menu extends Component{
             } 
 
         }
-  
     }
+    handleChangeActiveBtn_mess = () => {
+        this.setState({activeBtn: 'messenger'})
+    } 
+    handleChangeActiveBtn_home = () => {
+        this.setState({activeBtn: 'home'})
+    } 
+ 
     render(){
         // console.log('users_searched: ',this.state.users_searched);
-        
+ 
         const {info} = this.props;
         if(this.state.users_searched){
              [].concat(this.state.users_searched).map(user => <div className="users_searched">
@@ -90,26 +117,33 @@ export default class Menu extends Component{
                 
                 <div className="wrapper_menu">
                     <div className="Home_Page">
-                    <Link to='/messages/t/'>
-                        Chat
-                    </Link>
+
                         <Link to="/">
-                            <img src={logo_insta} alt=""/>
+                            <img onClick={this.handleChangeActiveBtn_home} src={logo_insta} alt=""/>
                         </Link>
                         </div>
                         <div className="search_user">
                             <input autoComplete="off" onFocus={this.handleFocusSearch} onBlur={this.handleBlurSearch} onChange={this.handleSearch_user} ref={this.search_user} type="text" name="user_name" />
                             <span className={classNames("placeSearch",{"changePlace": this.state.isShowSearch==='left'},  {'hiddenSearch': this.state.isShowSearch ==='hidden'})} >Search</span>
                         </div>
-                        <div onClick={this.showToolBar} className="tool_bar">
+                        <div className="tool_bar">
                             <div className={classNames('ToolBar', {'showToolBar':this.state.isShowToolBar})}>
-                                <Link className="menu_tool_profile" to={`/${info.user.email}`}>
+                                <Link  onClick={this.handleChangeProfile} className="menu_tool_profile" to={`/${info.user.email}`}>
                                     <img src={profileIcon} alt="icon profile"/>
                                     Profile 
                                 </Link>
                                 <button className="menu_tool_logout" onClick={this.handleLogout}>Log Out</button>
                         </div>
-                            <img onClick={this.showToolBar} src={info.user.avatarUrl} alt=""/>
+ 
+                            <Link  onClick={this.handleChangeActiveBtn_home}  to='/'>
+                                <img src={this.state.activeBtn==='home' ? homeActiveIcon : homeIcon} alt="messenger icon"/>
+                            </Link>
+                            <Link onClick={this.handleChangeActiveBtn_mess} to='/messages/t/'>
+                                <img  src={this.state.activeBtn==='messenger' ? messActiveIcon : messIcon} alt="home button"/>
+                            </Link>
+
+                   
+                            <img style={this.state.activeBtn==='profile' ? {border:"1px solid"} : {border:"0"}} onClick={this.showToolBar} src={info.user.avatarUrl} alt=""/>
                         </div>
                         {this.state.loading && <Loading />}
                         
