@@ -11,14 +11,13 @@ export default class Messenger extends Component {
             message: '',
             messageRe: ''
         }
-        socket = io('http://localhost:3001/');
+        socket = io(process.env.REACT_APP_URL_SOCKET);
         
     }
 
     componentDidMount(){
         socket.on('server-send-message', data => {
             this.setState({messageRe: data})
-           
         })
     }
     getDataInput = (e) => {
@@ -28,12 +27,12 @@ export default class Messenger extends Component {
         socket.emit('client-send-message', this.state.message);
     }
     render(){
- 
+      
         return(
             <div className="Messenger" style={{margin:'0 auto', textAlign: 'center' }}>
                 <h1>Messenger</h1>
                 <div id="save_data" className="wrapper_content" style={{width: '300px', height:'150px',margin:'0 auto', border:'1px solid '}}>
-                { this.state.messageRe.length && this.state.messageRe.map(item => <div className="data">{item}</div>)}
+                { this.state.messageRe.length && this.state.messageRe.map(item => <div className="data">{item===0 ? '' : item}</div>)}
                 </div>
                 <input onChange={this.getDataInput} type="text"/>
                 <input onClick={this.handleSendData} type="button" value="Gửi"/>
