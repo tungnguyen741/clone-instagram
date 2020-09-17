@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import axios from 'axios'
 import {  Redirect } from 'react-router-dom'
 import Loading from '../Loading/Loading'
-import loadingIcon from '../../image/loading.svg'
+import loadingIcon from '../../image/loading4.gif'
 export default class Sign_in extends Component{
     constructor(){
         super();
@@ -81,10 +81,10 @@ export default class Sign_in extends Component{
                 {
                     this.state.isPass===false && <p>The username you entered doesn't belong to an account. Please check your username and try again.</p>
                 }
-                {
+                {/* {
                     this.state.loading && <Loading loadingIcon={loadingIcon} />
-                }
-                <button className={classNames("btn-login",{correct: this.state.disable===""})} disabled={this.state.disable} type="submit">Log In</button>
+                } */}
+                <button className={classNames("btn-login",{correct: this.state.disable===""})} disabled={this.state.disable} type="submit">   {this.state.loading ? <Loading loadingIcon={loadingIcon} /> : 'Log In'}</button>
                
             </form>
              </div>

@@ -3,6 +3,9 @@ import './DetailPost.css'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios';
 import RenderPostDetail from "../Render/Render_DetailPost_Profile"
+import io from 'socket.io-client'
+
+var socket;
 export default class DetailPost extends Component{
     constructor(){
         super();
@@ -19,11 +22,15 @@ export default class DetailPost extends Component{
             isLiked: false,
             isFocusCmt: false,
             amountLike: 0,
-            userCommented: ""
+            userCommented: "",
+            newCmt: '',
+            
         }
- 
+        socket = io(process.env.REACT_APP_URL_SOCKET); 
+   
     }
     componentDidMount(){
+        
         const info = JSON.parse( localStorage.getItem('info') );
         axios.get(`${process.env.REACT_APP_URL_POST}/${this.props.match.params.id}`, axios.defaults.headers.common['Authorization'] = info.accessToken)    
         .then(res => {
@@ -35,8 +42,12 @@ export default class DetailPost extends Component{
             this.setState({loading: false});
             console.log('USER SIGNED ERROR',error)
         })       
+        socket.on('sv-comment', data => {
+            this.setState( (prevState) => ({ userCommented: prevState.userCommented.concat(data ? data : ''),}))
+        })
+      
     }
-   
+ 
     handleLikePost = () => {
         //this.setState({btn_like : !this.state.btn_like})
         this.setState((prevState) => ({ isLiked: !prevState.isLiked  }))
@@ -51,17 +62,19 @@ export default class DetailPost extends Component{
     handleDownAmountLike = () => {
         this.setState((prevState) => ({ amountLike: prevState.amountLike - 1  }))
     }
-
-    handleComment = (item) => {
-        this.setState((prevState)=> ({ userCommented: prevState.userCommented.concat(item) }))
-    }
+    //when haven't socket io
+    // handleComment = (item) => {
+    //     this.setState( (prevState) => ({ userCommented: prevState.userCommented.concat(this.state.newCmt  ) }))
+    // }  
 
     handleDelComment = (item) => {
         let i = this.state.userCommented.indexOf(item);
-        this.setState((prevState) => ({userCommented: prevState.userCommented.slice(0,i).concat(prevState.userCommented.slice(i+1) ) }));
-        
+        this.setState((prevState) => ({userCommented: prevState.userCommented.slice(0,i).concat(prevState.userCommented.slice(i+1) ) }));    
     }
    
+    handleFocusGetCmt = (data) => {
+        
+    }
        
     render(){
         const info = JSON.parse( localStorage.getItem('info') );
@@ -69,6 +82,7 @@ export default class DetailPost extends Component{
             return <Redirect to="/" />
         }
      
+
         return(   
                 <div className="DetailPost">
                     <div className="container">
@@ -85,6 +99,7 @@ export default class DetailPost extends Component{
                                         handleDownAmountLike={this.handleDownAmountLike}
                                         handleComment={this.handleComment}
                                         handleDelComment={this.handleDelComment}
+                                        handleFocusGetCmt={this.handleFocusGetCmt}
                         />
                     </div>
                 </div>

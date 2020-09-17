@@ -7,15 +7,28 @@ import Like from '../Like/Like'
 import comment from "../../image/comment.svg"
 import share from "../../image/share.svg"
 import Comment from '../Comment/Comment'
-
+import io from 'socket.io-client'
+import anotherLoading from '../../image/loading5.gif'
+var socket;
 export default class Render_DetailPost_Profile extends Component {
     constructor(){
         super();
         this.state={
             isShowUsersLike: false,
             isFocusCmt: false,
+            isReFocusCmt: ''
         }
+        socket = io(process.env.REACT_APP_URL_SOCKET); 
     }
+
+    componentDidMount(){
+        socket.on('sv-focus-inputCmt', data => {
+            this.setState({isReFocusCmt: data})
+        })
+        socket.on('sv-stop-focus-inputCmt', data => {
+            this.setState({isReFocusCmt: data})
+        })
+      }
     handleFocusCmt = () => {
         this.setState({isFocusCmt: true})
     }
@@ -162,10 +175,16 @@ export default class Render_DetailPost_Profile extends Component {
         
                            </div>
                         {/* DATE POST */}
+                        {
+                            this.state.isReFocusCmt==='focus_inputCmt' && <div className="another_cmt">
+                                <img src={anotherLoading} alt="loading"/>
+                                <span>ai đó đang nhập bình luận</span>
+                            </div>
+                        }  
                         <div className="date_post">
                             {moment(post.datePost).fromNow()}
                         </div>
-                        <Comment data={this.props.match} handleComment={this.props.handleComment} isFocusCmt={this.state.isFocusCmt} />
+                        <Comment handleFocusGetCmt={this.props.handleFocusGetCmt} data={this.props.match} handleComment={this.props.handleComment} isFocusCmt={this.state.isFocusCmt} />
                         </div>
                     </div>
                     
